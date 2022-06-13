@@ -132,6 +132,10 @@ class Email_Template():
 
         self.template = self.template.replace("|?|FOOTER|?|", self.footer)
 
+    def add_date(self):
+
+        self.template = self.template.replace("|?|DATE|?|", str(date_now()))
+
     
     def add_paragraphs(self):
 
@@ -356,7 +360,7 @@ class Email_Template():
             html = open(os.path.join(os.path.dirname(__file__), "templates/render.html"), "rb").read().decode('utf-8')
 
             # Personalize email
-            html = html.replace("|?|name|?|", str(user_name))
+            html = html.replace("|?|NAME|?|", str(user_name))
 
             # Turn these into plain/html MIMEText objects
             #part1 = MIMEText(text, "plain")
