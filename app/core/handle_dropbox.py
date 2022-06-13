@@ -35,8 +35,8 @@
 import os
 import sys
 
-import dropbox
-from dropbox import DropboxOAuth2FlowNoRedirect
+#import dropbox
+#from dropbox import DropboxOAuth2FlowNoRedirect
 
 # IMPORTS FROM OTHER FILES
 # Fix
@@ -57,24 +57,24 @@ class Handle_Dropbox():
     def upload(self, filename, file, dropbox_folder):
 
         # target location in Dropbox
-        target = str(dropbox_folder)     # the target folder
-        targetfile = target + filename   # the target path and file name
+        #target = str(dropbox_folder)     # the target folder
+        #targetfile = target + filename   # the target path and file name
 
         # Create a dropbox object using an API v2 key
-        d = dropbox.Dropbox(self.api_token)
+        #d = dropbox.Dropbox(self.api_token)
 
         # read the file and upload it
 
         # upload gives you metadata about the file
         # we want to overwite any previous version of the file
-        meta = d.files_upload(file, targetfile, mode=dropbox.files.WriteMode("overwrite"))
+        #meta = d.files_upload(file, targetfile, mode=dropbox.files.WriteMode("overwrite"))
 
         # create a shared link
-        link = d.sharing_create_shared_link(targetfile)
+        #link = d.sharing_create_shared_link(targetfile)
 
         # url which can be shared
-        url = link.url
+        #url = link.url
 
-        return url
+        return "" #url
 
 
