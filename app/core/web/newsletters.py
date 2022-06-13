@@ -171,13 +171,13 @@ def page_newsletters_update():
             UPDATE
             newsletters_content
             SET
-            title = '{request.form["title"]}',
+            title = "{request.form["title"]}",
             template = '{request.form["template"]}',
             color_main = '{request.form["color-main"]}',
             color_accent = '{request.form["color-accent"]}',
             color_text = '{request.form["color-text"]}',
-            perex_header = '{request.form["perex-header"]}',
-            perex = '{request.form["perex"]}'
+            perex_header = "{request.form["perex-header"]}",
+            perex = "{request.form["perex"]}"
 
             WHERE
             id = {request.form["id"]}
@@ -302,9 +302,9 @@ def page_newsletters_add_paragraph():
         VALUES
         (
             {request.form["id"]},
-            '{request.form["header"]}',
-            '{request.form["text"]}',
-            '{request.form["image"]}'
+            "{request.form["header"]}",
+            "{request.form["text"]}",
+            "{request.form["image"]}"
         )
         """)
 
