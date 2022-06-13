@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <div class="container" align="center">
+        
+        <br>
+        <h1>
+            <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                group
+            </span>
+            NEWSLETTERS
+        </h1>
+
+        
+        <div align="right">
+            <a href="/newsletters/new" style="margin-right: 50px">
+                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                    add</span>
+            </a>
+        </div>
+
+
+        <div>
+            <br><br>
+            <table style="width: 90%; text-align: left;">
+
+                <tr>
+                    <th>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            title
+                        </span>
+                    </th>
+
+                    <th>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            group
+                        </span>
+                    </th>
+
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                
+                </tr>
+
+                
+                {% for x in newsletters %}
+
+               
+                    <tr>
+                        <td>{{x[0]}}</td>
+                        <td>{{x[1]}}</td>
+                        
+                        <td>
+                            {% if x[2] == 0 %}
+                                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                                    unsubscribe
+                                </span>
+
+                            {% elif x[2] == 1 %}
+                                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                                    mark_email_read
+                                </span>
+
+                            {% endif %}
+                            
+
+                        </td>
+
+                        <td>{{x[3]}}</td>
+                        <th>{{x[4]}}</th>
+
+                        <td>
+                            <a href="/newsletters/update?id={{x[5]}}">
+                                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                                    edit
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+
+            <br><br>
+
+        </div>
+
+ 
+
+        </form>
+    </div>
+
+{% endblock %}

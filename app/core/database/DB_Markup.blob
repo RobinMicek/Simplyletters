@@ -1,0 +1,50 @@
+# Modify this code to update the DB schema diagram.
+# To reset the sample schema, replace everything with
+# two dots ('..' - without quotes).
+
+newsletter
+-
+id PRIMARY_KEY
+user_group INT
+html_render STRING
+status BOOLEAN
+sent DATE
+created DATE
+created_by STRING FK >- admins.id
+
+users
+-
+id PRIMARY_KEY FK >- users_in_groups.user
+email STRING
+firstname STRING
+surname STRING
+active BOOLEAN
+since DATE
+
+user_groups
+-
+id PRIMARY_KEY
+name STRING FK >- newsletter.user_group
+description STRING
+
+users_in_groups
+-
+group INT FK >- user_groups.id
+user INT
+
+admins
+-
+id PRIMARY_KEY
+username STRING
+hash STRING 
+sex STRING
+
+
+
+
+api
+-
+id PRIMARY_KEY
+key STRING
+app STRING
+

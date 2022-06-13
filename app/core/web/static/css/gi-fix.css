@@ -1,0 +1,13 @@
+/* This is a fix for vertical alignment of Google Icons with text */
+
+.vertical-align-middle { 
+    vertical-align: middle; 
+}
+
+.material-symbols-rounded {
+    font-size: 40px !important;
+}
+
+.padding-bottom-3 {
+    padding-bottom: 3px;
+}

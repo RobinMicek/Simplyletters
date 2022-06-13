@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .cont {
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: 1fr; 
+        gap: 0px 0px; 
+        grid-template-areas: 
+        "x1 x2"; 
+    }
+    .x1 { grid-area: x1; }
+    .x2 { grid-area: x2; }
+</style>
+
+    <div class="container" align="center">
+        
+        <br>
+        <h1>
+            <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                MAIL
+            </span>
+            CREATE NEWSLETTER
+        </h1>
+
+        <form action="/newsletters/new" method="POST">
+            <div class="cont">
+            
+
+                <div class="x1">
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            abc
+                        </span>
+                        Title
+                    </label> <br>
+                    <input type="text" name="title" required>
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            label
+                        </span>
+                        Slug
+                    </label> <br>
+                    <input type="text" name="slug" required>
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            group
+                        </span>
+                        Target Group
+                    </label> <br>
+                    <select name="user-group" required>
+                        {% for x in user_groups %}
+                        <option value="{{x[0]}}">{{x[1]}}</option>
+                        {% endfor %}
+                    </select>
+
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            feed
+                        </span>
+                        Newsletter Template
+                    </label> <br>
+                    <select name="template" required>
+                        <option value="1">Simple</option>
+                        <option value="2">Modern</option>
+                    </select>
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            palette
+                        </span>
+                        Main Color
+                    </label> <br>
+                    <input type="color" name="color-main" required>
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            palette
+                        </span>
+                        Accent Color
+                    </label> <br>
+                    <input type="color" name="color-accent" required>
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            palette
+                        </span>
+                        Text Color
+                    </label> <br>
+                    <input type="color" name="color-text" required>
+
+
+                </div>
+
+                <div class="x2">
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            text_fields
+                        </span>
+                        Heading
+                    </label> <br>
+                    <textarea name="perex-header"></textarea>
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            view_headline
+                        </span>
+                        Perex
+                    </label> <br>
+                    <textarea name="perex"></textarea>
+                </div>
+
+            </div>
+
+
+
+            <button type="submit">
+                <h2>
+                    <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                        add
+                    </span>
+                    CREATE
+                </h2>
+            </button>
+        </form>
+
+        <br><br>
+        
+    </div>
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <div class="container" align="center">
+        
+        <br>
+        <h1>
+            <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                group
+            </span>
+            GROUPS
+        </h1>
+
+
+        <div>
+            <br><br>
+            <table style="width: 90%; text-align: left;">
+
+                <tr>
+
+                    <th></th>
+
+                    <th></th>
+
+                    <th></th>
+
+                    <th></th>
+                
+                </tr>
+
+
+
+                <tr div="table-form">
+
+                    <form action="/connected-apps" method="POST">
+                        <td>
+                            <input class="table-form-input table-form" type="text" name="name" placeholder="Name">
+                        </td>
+                        <td>
+                            <select name="user-group">
+                                {% for x in user_groups %}
+                                    <option value="{{x[0]}}">{{x[1]}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>
+                            <input class="table-form-input table-form" type="text" name="description" placeholder="Description">                       
+                        </td>
+                        <td>
+                            <button class="table-form-button table-form">
+                                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3" style="font-size: 30px !important">
+                                    add
+                                </span>
+                            </button>
+                        </td>
+                    </form>
+
+                </tr>
+
+                
+                {% for x in data %}
+
+               
+                    <tr>
+                        <td>{{x[0]}}   -  {{x[4]}}</td>
+
+                        <td class="tooltip"> 
+                            <span class="tooltip material-symbols-rounded vertical-align-middle padding-bottom-3">
+                                description
+                            </span>
+                            <span class="tooltiptext">{{x[1]}}</span>
+                        </td>
+                        <td>{{x[2]}}</td>
+                        <td>
+                            <a href="/connected-apps/delete?id={{x[3]}}">
+                                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                                    delete
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+
+            <br><br>
+
+        </div>
+
+ 
+
+        </form>
+    </div>
+
+{% endblock %}

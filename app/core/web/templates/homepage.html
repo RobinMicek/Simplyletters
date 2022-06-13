@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .cont {
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: 1fr; 
+        gap: 0px 0px; 
+        grid-template-areas: 
+        "x1 x2"; 
+    }
+    .x1 { grid-area: x1; }
+    .x2 { grid-area: x2; }
+</style>
+
+    <div class="container" align="center">
+        
+        <br>
+        <h1>
+            <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                dashboard
+            </span>
+            DASHBOARD
+        </h1>
+
+        
+        <div class="cont">
+
+            <div class="x1">
+                
+                <h1>
+                    <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                        mail
+                    </span>
+                    {{data["newsletters"]}}
+                </h1>
+            </div>
+
+            <div class="x2">
+                <h1>
+                    <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                        person
+                    </span>
+                    {{data["users"]}}
+                </h1>
+            </div>
+
+        </div>
+
+        <br><br><br>
+
+        <h1>DASHBOARD - WIP</h1>
+
+        <br><br><br>
+
+
+    </div>
+
+{% endblock %}

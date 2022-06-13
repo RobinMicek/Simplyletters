@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .cont {
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: 1fr; 
+        gap: 0px 0px; 
+        grid-template-areas: 
+        "x1 x2"; 
+    }
+    .x1 { grid-area: x1; }
+    .x2 { grid-area: x2; }
+</style>
+
+    <div class="container" align="center">
+        
+        <br>
+        <h1>
+            <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                MAIL
+            </span>
+            UPDATE NEWSLETTER
+        </h1>
+
+        <div align="right">
+            <a href="/newsletters/show-render?id={{x['id']}}" style="margin-right: 20px" target="_blank">
+                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                    preview</span>
+            </a>
+
+                
+            <a href="/newsletters/send-email?id={{x['id']}}" style="margin-right: 20px">
+                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                    send</span>
+            </a>
+
+            <a href="/newsletters/delete-newsletter?id={{x['id']}}" style="margin-right: 50px">
+                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                    delete</span>
+            </a>
+        </div>
+        
+
+        
+
+        <form action="/newsletters/update" method="POST">
+            <div class="cont">
+
+                <div class="x1">
+
+                    <input type="hidden" name="id" value="{{x['id']}}">
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            abc
+                        </span>
+                        Title
+                    </label> <br>
+                    <input type="text" name="title" value="{{x['title']}}" required>
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            label
+                        </span>
+                        Slug
+                    </label> <br>
+                    <input type="text" name="slug" value="{{x['slug']}}" readonly>
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            group
+                        </span>
+                        Target Group
+                    </label> <br>
+                    <select name="user-group" required>
+                        <option value="{{x['user-group-id']}}" selected>{{x['user-group']}}</option>
+                    </select>
+
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            feed
+                        </span>
+                        Newsletter Template
+                    </label> <br>
+                    <select name="template" required>
+                        {% if x['template'] == 1 %}
+                            <option value="1" selected>Simple</option>
+                        {% elif x['template'] == 2 %}
+                            <option value="2" selected>Modern</option>
+                        {% endif%}
+
+                        <option value="1" selected>Simple</option>
+                        <option value="2" selected>Modern</option>
+                    </select>
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            palette
+                        </span>
+                        Main Color
+                    </label> <br>
+                    <input type="color" name="color-main"  value="{{x['color-main']}}" required>
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            palette
+                        </span>
+                        Accent Color
+                    </label> <br>
+                    <input type="color" name="color-accent" value="{{x['color-accent']}}" required>
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            palette
+                        </span>
+                        Text Color
+                    </label> <br>
+                    <input type="color" name="color-text" value="{{x['color-text']}}" required>
+
+
+                </div>
+
+                <div class="x2">
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            text_fields
+                        </span>
+                        Heading
+                    </label> <br>
+                    <textarea name="perex-header" rows="5">{{x['perex-header']}}</textarea>
+
+                    <br><br>
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            view_headline
+                        </span>
+                        Perex
+                    </label> <br>
+                    <textarea name="perex" rows="15">{{x['perex']}}</textarea>
+                </div>
+
+            </div>
+
+
+
+            <button type="submit">
+                <h2>
+                    <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                        update
+                    </span>
+                    UPDATE
+                </h2>
+            </button>
+        </form>
+
+        <br><br>
+
+
+
+        <div>
+            <div>
+                <br><br>
+                <table style="width: 90%; text-align: left;">
+    
+                    <tr>
+    
+                        <th>
+                            <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                                title
+                            </span>
+                        </th>
+    
+                        <th>
+                            <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                                view_headline
+                            </span>
+                        </th>
+    
+                        <th>
+                            <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                                image
+                            </span>
+                        </th>
+    
+                        <th>
+                            
+                        </th>
+                    
+                    </tr>
+    
+    
+    
+                    <tr div="table-form" id="paragraphs">
+    
+                        <form action="/newsletters/add-paragraph" method="POST">
+                            <input type="hidden" value="{{x['id']}}" name="id">
+
+                            <td>
+                                <input class="table-form-input" type="text" name="header">
+                            </td>
+                            <td>
+                                <textarea class="table-form-textarea" name="text"></textarea>                       
+                            </td>
+                            <td>
+                                <input class="table-form-input " type="url" name="image">
+                            </td>
+                            <td>
+                                <button class="table-form-button table-form" type="submit">
+                                    <span class="material-symbols-rounded vertical-align-middle padding-bottom-3" style="font-size: 30px !important">
+                                        post_add
+                                    </span>
+                                </button>
+                            </td>
+                        </form>
+    
+                    </tr>
+
+                    {% for p in paragraph_data %}
+                        <tr div="table-form">
+
+                        
+                                <td>
+                                    <input class="table-form-input" value="{{p['header']}}" readonly>
+                                </td>
+                                <td>
+                                    <textarea class="table-form-textarea" readonly>{{p['text']}}</textarea>                       
+                                </td>
+                                <td>
+                                    <input class="table-form-input" value="{{p['image']}}" readonly>
+                                </td>
+                                <td>
+                                    <a href="/newsletters/delete-paragraph?id={{p['paragraph-id']}}&n-id={{x['id']}}">
+                                        <button class="table-form-button table-form" >
+                                            <span class="material-symbols-rounded vertical-align-middle padding-bottom-3" style="font-size: 30px !important">
+                                                delete
+                                            </span>
+                                        </button>
+                                    </a>
+                                </td>
+        
+                        </tr>
+
+                    {% endfor %}
+    
+                    
+                
+                </table>
+    
+                <br><br>
+    
+            </div>
+
+
+        </div>
+
+        
+
+        <br><br>
+        
+    </div>
+
+{% endblock %}
+            

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .cont {
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: 1fr; 
+        gap: 0px 0px; 
+        grid-template-areas: 
+        "x1 x2"; 
+    }
+    .x1 { grid-area: x1; }
+    .x2 { grid-area: x2; }
+</style>
+
+    <div class="container" align="center">
+        
+        <br>
+        <h1>
+            <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                settings
+            </span>
+            SETTINGS
+        </h1>
+
+        <form action="/settings" method="POST">
+            <div class="cont">
+        
+                <div class="x1">
+                    
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            image
+                        </span>
+                        Logo
+                    </label> <br>
+                    <input type="url" name="logo" value="{{ data['logo'] }}">
+
+                    <br><br><br>
+
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            Description
+                        </span>
+                        Footer
+                    </label> <br>
+                    <textarea name="footer" style="width: 400px">{{ data['footer'] }}</textarea>
+
+                </div>
+                <div class="x2">
+
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            mail
+                        </span>
+                        Email
+                    </label> <br>
+                    <input type="email" name="email" value="{{ data['email'] }}">
+
+                    <br><br><br>
+
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            lock
+                        </span>
+                        Password
+                    </label> <br>
+                    <input type="password" name="password" value="{{ data['password'] }}">
+
+                    <br><br><br>
+
+                    <label>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            dns
+                        </span>
+                        SMTP Server
+                    </label> <br>
+                    <input type="text" name="smtp" value="{{ data['smtp'] }}">
+                    
+                </div>
+
+            </div>
+
+            <br><br>
+            <button type="submit">
+                <h2>
+                    <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                        update
+                    </span>
+                    UPDATE
+                </h2>
+            </button>
+            <br><br>
+
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplyletters</title>
+
+    <link rel="icon" type="image/png" href="/static/media/simplyletters_icon.png">
+
+    <link type="text/css" rel="stylesheet" href="/static/css/main.css">
+    <link type="text/css" rel="stylesheet" href="/static/css/gi-fix.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+</head>
+<body>
+
+
+
+
+    <style>
+        .sidebar {
+        margin: 0;
+        padding: 0;
+        width: 300px;
+        background-color: #382d47;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+        }
+
+        .sidebar a {
+        display: block;
+        color: #f5f5f3;
+        padding: 5px;
+        text-decoration: none;
+        }
+
+        .sidebar h3 {
+            padding: 0px;
+            margin: 5px;
+        }
+        
+        .sidebar a.active {
+        background-color:  #30273d;
+        color: white;
+        }
+
+        .sidebar a:hover:not(.active) {
+        background-color: #30273d;
+        color: white;
+        }
+
+        div.content {
+        margin-left: 300px !important;
+        padding: 1px 16px ;
+        height: 1000px ;
+        }
+
+        .logo {
+            width: 250px;
+        }
+
+        @media screen and (max-width: 700px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+        .sidebar a {float: left;}
+        div.content {margin-left: 0;}
+        .logo {width: 100px;}
+
+        div.content {
+        margin-left: 0px;
+        padding: auto ;
+        height: auto
+        }
+        }
+
+        @media screen and (max-width: 400px) {
+        .sidebar a {
+            text-align: center;
+            float: none;
+        }
+        .logo {width: 50Px;}
+        }
+    </style>
+
+    <div class="sidebar">
+        <a class="active" style="padding: 16px ;">
+            <img class="logo" src="/static/media/simplyletters.png">
+        </a>
+
+        <a href="/">
+            <h3>
+                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                    dashboard
+                </span>
+
+                Dashboard
+            </h3>
+        </a>
+
+        <a href="/newsletters">
+            <h3>
+                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                    mail
+                </span>
+
+                Newsletters
+            </h3>
+        </a>
+
+        <a href="/groups">
+            <h3>
+                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                    Group
+                </span>
+
+                Groups
+            </h3>
+        </a>
+
+        <a href="">
+            <h3>
+                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                    person_filled
+                </span>
+
+                Subscribers
+            </h3>
+        </a>
+
+        <a href="/settings">
+            <h3>
+                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                    Settings
+                </span>
+
+                Settings
+            </h3>
+        </a>
+
+        <a href="/admins">
+            <h3>
+                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                    manage_accounts
+                </span>
+
+                Admins
+            </h3>
+        </a>
+
+        <a href="/connected-apps">
+            <h3>
+                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                    Link
+                </span>
+
+                Connect apps
+            </h3>
+        </a>
+
+        <a href="/login/logout">
+            <h3>
+                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                    logout
+                </span>
+
+                Logout
+            </h3>
+        </a>
+    </div>
+
+    <div class="content">
+
+        <style>
+            .topbar {
+                width: 100%;
+                background-color: ;
+                margin: 0px !important;
+            }
+        </style>
+
+        <div class="topbar" align="right">
+            <h3 style="color: black">
+                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                    person
+                </span>
+                {{ admin }}     
+            </h3>
+        </div>
+
+        {% block content %}
+
+            <div align="center" style="margin-top: 300px;">
+
+                <h1>404</h1>
+                <h3>PAGE DOES NOT EXIST!</h3>
+
+            </div>
+        {% endblock %}
+    </div> 
+    
+</body>
+</html>

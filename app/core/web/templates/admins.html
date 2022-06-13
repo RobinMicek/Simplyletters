@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <div class="container" align="center">
+        
+        <br>
+        <h1>
+            <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                manage_accounts
+            </span>
+            ADMINS
+        </h1>
+
+
+        <div>
+            <br><br>
+            <table style="width: 90%; text-align: left;">
+
+                <tr>
+                    <th></th>
+
+                    <th></th>
+
+                    <th></th>
+
+                    <th>
+                        
+                    </th>
+
+                </tr>
+
+
+
+                <tr div="table-form">
+
+                    <form action="/admins" method="POST">
+                        <td>
+                            <input class="table-form-input table-form" type="text" name="username" placeholder="Username">
+                        </td>
+                        <td>
+                            <select name="level">
+                                <option value="1">Creator</option>
+                                <option value="2">Admin</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="table-form-input table-form" type="password" name="password" placeholder="Password">                       
+                        </td>
+                        <td>
+                            <button class="table-form-button table-form">
+                                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3" style="font-size: 30px !important">
+                                    group_add
+                                </span>
+                            </button>
+                        </td>
+                    </form>
+
+                </tr>
+
+                
+                {% for x in data %}
+
+               
+                    <tr>
+                        <td>{{x[0]}}</td>
+                        <td>
+                            {% if x[1] == 1 %}
+                                Creator
+                            {% elif x[1] == 2 %}
+                                Admin
+                            {% endif %}
+                        </td>
+                        <td></td>
+                    
+                        <td>
+                            <a href="/admins/delete?username={{x[0]}}">
+                                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                                    delete
+                                </span>
+                            </a>
+                        </td>
+                        <td></td>
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+
+            <br><br>
+
+        </div>
+
+ 
+
+        </form>
+    </div>
+
+{% endblock %}
