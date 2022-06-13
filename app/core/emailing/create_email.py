@@ -132,10 +132,6 @@ class Email_Template():
 
         self.template = self.template.replace("|?|FOOTER|?|", self.footer)
 
-    def add_date(self):
-
-        self.template = self.template.replace("|?|DATE|?|", str(date_now()))
-
     
     def add_paragraphs(self):
 
@@ -182,18 +178,23 @@ class Email_Template():
 
         self.template = self.template.replace("|?|COLOR-TEXT|?|", self.color_text)
 
+    
+    def add_date(self):
+
+        self.template = self.template.replace("|?|DATE|?|", date_now())
+
 
 
     def render_email(self):
 
         # Replace variables
         self.add_logos()
-        self.add_date()
         self.add_title()
         self.add_perex()
         self.add_footer()
         self.add_paragraphs()
         self.add_colors()
+        self.add_date()
         
 
         # Save the file
