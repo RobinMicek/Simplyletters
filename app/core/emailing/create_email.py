@@ -188,6 +188,7 @@ class Email_Template():
 
         # Replace variables
         self.add_logos()
+        self.add_date()
         self.add_title()
         self.add_perex()
         self.add_footer()
