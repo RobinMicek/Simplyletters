@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <div class="container" align="center">
+        
+        <br>
+        <h1>
+            <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                person
+            </span>
+            USERS
+        </h1>
+
+
+        <div>
+            <br><br>
+            <table style="width: 90%; text-align: left;">
+
+                <tr>
+
+                    <th>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            account_circle
+                        </span>
+                    </th>
+
+                    <th>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                
+                        </span>
+                    </th>
+
+                    <th>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            mail
+                        </span>
+                    </th>
+
+                    <th>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            group
+                        </span>
+                    </th>
+                
+                </tr>
+
+
+
+
+                
+                {% for x in data %}
+
+               
+                    <tr>
+                        <td>{{x[0]}}</td>
+                        
+                        <td>{{x[1]}}</td>
+                        
+                        <td>{{x[2]}}</td>
+
+                        <td>{{x[3]}}</td>
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+
+            <br><br>
+
+        </div>
+
+ 
+
+        </form>
+    </div>
+
+{% endblock %}

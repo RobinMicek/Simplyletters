@@ -303,6 +303,48 @@ def page_dashboard_groups_delete():
 
 
 
+@dashboard.route("/users")
+def page_dashboard_users():
+
+    if session.get("admin", None) != None:
+        
+       
+
+        db = Database()
+        db.connect()
+        db.cursor.execute("""
+        SELECT 
+        users.firstname, 
+        users.surname, 
+        users.email,
+
+        user_groups.name
+        
+        FROM 
+        users
+
+        INNER JOIN
+        users_in_groups
+        ON users.id = users_in_groups.user_id
+        
+        INNER JOIN
+        user_groups 
+        ON users_in_groups.group_id = user_groups.id 
+        """)
+        
+        x = db.cursor.fetchall()
+
+        
+        db.close()
+        
+
+        return render_template("users.html", admin=session["admin"], data=x)
+
+    else:
+        return redirect("/login")
+
+
+
 
 
 @dashboard.route("/admins", methods=["POST", "GET"])
