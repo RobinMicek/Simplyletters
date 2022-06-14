@@ -267,13 +267,13 @@ class Email_Template():
         VALUES
         (
             {id},
-            '{self.template_number}',
-            '{self.color_main}',
-            '{self.color_accent}',
-            '{self.color_text}',
-            '{self.title}',
-            '{self.perex}',
-            '{self.perex_header}'
+            "{self.template_number}",
+            "{self.color_main}",
+            "{self.color_accent}",
+            "{self.color_text}",
+            "{self.title}",
+            "{self.perex}",
+            "{self.perex_header}"
         )
         """)
 
