@@ -116,8 +116,8 @@ def page_dashboard_settings():
             UPDATE
             newsletters_config
             SET
-            footer = '{request.form["footer"]}',
-            logo = '{request.form["logo"]}'
+            footer = "{request.form["footer"]}",
+            logo = "{request.form["logo"]}"
             """)
 
             db.cursor.execute(f"""
