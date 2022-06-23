@@ -66,5 +66,5 @@ app.register_blueprint(connect, url_prefix="/connected-apps")
 
 while __name__ == "__main__":
     app.run(
-        debug=True
+        debug=False
     )   
