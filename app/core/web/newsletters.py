@@ -413,6 +413,8 @@ def page_newsletters_show_render():
                 "image": p[2]
             }]
 
+            print(p)
+
         newsletter = Email_Template(
             n_info[0],
             n_info[1],
@@ -501,6 +503,7 @@ def page_newsletters_send_email():
         n_paragraphs = []
 
         for p in x:
+            
             n_paragraphs += [{
                 "header": p[0],
                 "text": p[1],

@@ -110,4 +110,5 @@ VALUES
     'This is footer!'
 );
 
-COMMIT
+COMMIT;
+

@@ -79,10 +79,10 @@ def page_connect():
             )
             VALUES
             (
-                '{request.form["name"]}',
-                '{request.form["description"]}',
+                '{request.json["name"]}',
+                '{request.json["description"]}',
                 '{new_key}',
-                '{request.form["user-group"]}'
+                '{request.json["user-group"]}'
             )
             """)
 

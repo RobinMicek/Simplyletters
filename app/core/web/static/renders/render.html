@@ -1,263 +1,185 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <head>
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+		<o:AllowPNG/>
+		<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="date=no">
+	<meta name="format-detection" content="address=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="x-apple-disable-message-reformatting">
+    <!--[if !mso]><!-->
+	<link href="https://fonts.googleapis.com/css?family=Muli:400,400i,700,700i" rel="stylesheet">
+    <!--<![endif]-->
+	<title>API TEST 2</title>
+	<!--[if gte mso 9]>
+	<style type="text/css" media="all">
+		sup { font-size: 100% !important; }
+	</style>
+	<![endif]-->
+	
 
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Testovací Účtenka</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style type="text/css">
-  /**
-   * Google webfonts. Recommended to include the .woff version for cross-client compatibility.
-   */
-  @media screen {
-    @font-face {
-      font-family: 'Source Sans Pro';
-      font-style: normal;
-      font-weight: 400;
-      src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff) format('woff');
-    }
+	<style type="text/css" media="screen">
+		/* Linked Styles */
+		body { padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#FFFFFF; -webkit-text-size-adjust:none }
+		a { color:#66c7ff; text-decoration:none }
+		p { padding:0 !important; margin:0 !important } 
+		img { -ms-interpolation-mode: bicubic; /* Allow smoother rendering of resized image in Internet Explorer */ }
+		.mcnPreviewText { display: none !important; }
 
-    @font-face {
-      font-family: 'Source Sans Pro';
-      font-style: normal;
-      font-weight: 700;
-      src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff) format('woff');
-    }
-  }
+				
+		/* Mobile styles */
+		@media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {
+			.mobile-shell { width: 100% !important; min-width: 100% !important; }
+			.bg { background-size: 100% auto !important; -webkit-background-size: 100% auto !important; }
+			
+			.text-header,
+			.m-center { text-align: center !important; }
+			
+			.center { margin: 0 auto !important; }
+			.container { padding: 20px 10px !important }
+			
+			.td { width: 100% !important; min-width: 100% !important; }
 
-  /**
-   * Avoid browser level font resizing.
-   * 1. Windows Mobile
-   * 2. iOS / OSX
-   */
-  body,
-  table,
-  td,
-  a {
-    -ms-text-size-adjust: 100%; /* 1 */
-    -webkit-text-size-adjust: 100%; /* 2 */
-  }
+			.m-br-15 { height: 15px !important; }
+			.p30-15 { padding: 30px 15px !important; }
 
+			.m-td,
+			.m-hide { display: none !important; width: 0 !important; height: 0 !important; font-size: 0 !important; line-height: 0 !important; min-height: 0 !important; }
 
-  body {
-    color: #ffffff !important
-  }
-  /**
-   * Remove extra space added to tables and cells in Outlook.
-   */
-  table,
-  td {
-    mso-table-rspace: 0pt;
-    mso-table-lspace: 0pt;
-  }
+			.m-block { display: block !important; }
 
-  /**
-   * Better fluid images in Internet Explorer.
-   */
-  img {
-    -ms-interpolation-mode: bicubic;
-  }
+			.fluid-img img { width: 100% !important; max-width: 100% !important; height: auto !important; }
 
-  /**
-   * Remove blue links for iOS devices.
-   */
-  a[x-apple-data-detectors] {
-    font-family: inherit !important;
-    font-size: inherit !important;
-    font-weight: inherit !important;
-    line-height: inherit !important;
-    color: inherit !important;
-    text-decoration: none !important;
-  }
+			.column,
+			.column-top,
+			.column-empty,
+			.column-empty2,
+			.column-dir-top { float: left !important; width: 100% !important; display: block !important; }
 
-  /**
-   * Fix centering issues in Android 4.4.
-   */
-  div[style*="margin: 16px 0;"] {
-    margin: 0 !important;
-  }
+			.column-empty { padding-bottom: 10px !important; }
+			.column-empty2 { padding-bottom: 30px !important; }
 
-  body {
-    width: 100% !important;
-    height: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  /**
-   * Collapse table borders to avoid space between cells.
-   */
-  table {
-    border-collapse: collapse !important;
-  }
-
-  a {
-    color: #1a82e2;
-  }
-
-  img {
-    height: auto;
-    line-height: 100%;
-    text-decoration: none;
-    border: 0;
-    outline: none;
-  }
-  </style>
-
+			.content-spacing { width: 15px !important; }
+		}
+	</style>
 </head>
-<body style="background-color: #8b73ee;">
+<body class="body" style="padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#FFFFFF; -webkit-text-size-adjust:none;">
+	<table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#FFFFFF">
+		<tbody><tr>
+			<td valign="top" align="center">
+				<table class="mobile-shell" width="650" cellspacing="0" cellpadding="0" border="0">
+					<tbody><tr>
+						<td class="td container" style="width:650px; min-width:650px; font-size:0pt; line-height:0pt; margin:0; font-weight:normal; padding:55px 0px;">
+							<!-- Header -->
+							<table width="100%" cellspacing="0" cellpadding="0" border="0">
+								<tbody><tr>
+									<td class="p30-15" style="padding: 0px 30px 30px 30px;">
+										<table width="100%" cellspacing="0" cellpadding="0" border="0">
+											<tbody><tr>
+												<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;" width="145">
+													<table width="100%" cellspacing="0" cellpadding="0" border="0">
+														<tbody><tr>
+															<td class="img m-center" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="http://simplyletters.herokuapp.com/static/media/simplyletters.png" alt=""  height="38" border="0"></td>
+														</tr>
+													</tbody></table>
+												</th>
+												<th class="column-empty" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;" width="1"></th>
+											</tr>
+										</tbody></table>
+									</td>
+								</tr>
+							</tbody></table>
+							<!-- END Header -->
 
-  <!-- start preheader -->
-  <div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
-    Zakoupené produkty si můžete stáhnout po přihlášení do svého účtu na našem webu.
-<br>
-Pokud je s nákupem nějaký problém, neváhejte nás kontaktovat!
-  </div>
-  <!-- end preheader -->
+							<!-- Intro -->
+							<table width="100%" cellspacing="0" cellpadding="0" border="0">
+								<tbody><tr>
+									<td style="padding-bottom: 10px;">
+										<table width="100%" cellspacing="0" cellpadding="0" border="0">
+											<tbody><tr>
+												<td class="tbrr p30-15" style="padding: 60px 30px; border-radius:26px 26px 0px 0px;" bgcolor="#F1F1F1">
+													<table width="100%" cellspacing="0" cellpadding="0" border="0">
+														<tbody><tr>
+															<td class="h1 pb25" style="color:#000000; font-family:'Muli', Arial,sans-serif; font-size:40px; line-height:46px; text-align:center; padding-bottom:25px;">Hi,</td>
+														</tr>
+														<tr>
+															<td class="text-center pb25" style="color:#000000; font-family:'Muli', Arial,sans-serif; font-size:16px; line-height:30px; text-align:center; padding-bottom:25px;">This is api test.</td>
+														</tr>
+														
+														
+														
+													</tbody></table>
+												</td>
+											</tr>
+										</tbody></table>
+									</td>
+								</tr>
+							</tbody></table>
+							<!-- END Intro -->
 
-  <!-- start body -->
-  <table border="0" cellpadding="0" cellspacing="0" width="100%">
-
-    <!-- start logo -->
-    <tr>
-      <td align="center" bgcolor="#8b73ee">
-        <!--[if (gte mso 9)|(IE)]>
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
-        <tr>
-        <td align="center" valign="top" width="600">
-        <![endif]-->
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
-          <tr>
-            <td align="center" valign="top" style="padding: 36px 24px;">
-                <img src="http://simplyletters.herokuapp.com/static/media/simplyletters.png" alt="Logo" border="0" height="48" style="display: block; height: 48px;">
-            </td>
-          </tr>
-        </table>
-        <!--[if (gte mso 9)|(IE)]>
-        </td>
-        </tr>
-        </table>
-        <![endif]-->
-      </td>
-    </tr>
-    <!-- end logo -->
-
+							
+                            
+<!-- Article / Full Width Image + Title + Copy + Button -->
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody><tr>
+        <td style="padding-bottom: 10px;">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#F1F1F1">
+                <tbody>
+                    <tr>
+    <td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg" alt="" width="650" height="366" border="0"></td>
+</tr>
+                <tr>
+                    <td class="p30-15" style="padding: 50px 30px;">
+                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody><tr>
+                                <td class="h3 pb20" style="color:#000000; font-family:'Muli', Arial,sans-serif; font-size:25px; line-height:32px; text-align:left; padding-bottom:20px;">Funguje to???</td>
+                            </tr>
+                            <tr>
+                                <td class="text pb20" style="color:#000000; font-family:Arial,sans-serif; font-size:14px; line-height:26px; text-align:left; padding-bottom:20px;">Tohle by snad již mohlo fungovat! Uvidíme no...</td>
+                            </tr>
     
-    <!-- start hero -->
-    <tr>
-      <td align="center" bgcolor="#8b73ee">
-        <!--[if (gte mso 9)|(IE)]>
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
-        <tr>
-        <td align="center" valign="top" width="600">
-        <![endif]-->
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
-          <tr>
-            <td align="left" bgcolor="#9294f8" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #8b73ee;">
-              <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px; text-align: center;">Děkujeme za nákup, |?|NAME|?|.</h1>
-            </td>
-          </tr>
-        </table>
-        <!--[if (gte mso 9)|(IE)]>
-        </td>
-        </tr>
-        </table>
-        <![endif]-->
-      </td>
-    </tr>
-    <!-- end hero -->
-
-    <!-- start copy block -->
-    <tr>
-      <td align="center" bgcolor="#8b73ee">
-        <!--[if (gte mso 9)|(IE)]>
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
-        <tr>
-        <td align="center" valign="top" width="600">
-        <![endif]-->
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
-
-          <!-- start copy -->
-          <tr>
-            <td align="left" bgcolor="#9294f8" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-              <p style="margin: 0; text-align: center;">Zakoupené produkty si můžete stáhnout po přihlášení do svého účtu na našem webu.
-<br>
-Pokud je s nákupem nějaký problém, neváhejte nás kontaktovat!</p>
-            </td>
-          </tr>
-          <!-- end copy -->
-
-          <!-- start receipt table -->
-          <tr>
-            <td align="left" bgcolor="#9294f8" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-              <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                <tr>
-                  <td align="left" bgcolor="#9294f8" width="30%" style="padding: 12px;font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;"><strong>Item</strong></td>
-                  <td align="left" bgcolor="#9294f8" width="45%" style="padding: 12px;font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;"><strong>Description</strong></td>
-                  <td align="left" bgcolor="#9294f8" width="15%" style="padding: 12px;font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;"><strong>Price</strong></td>
+                        </tbody></table>
+                    </td>
                 </tr>
-
-                <tr>
-    <td align="left" width="25%" style="color: #ffffff; padding: 6px 12px;font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">Grand Theft Auto 5</td>
-    <td align="left" width="40%" style="color: #ffffff; padding: 6px 12px;font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">www.youtube.com/</td>
-    <td align="left" width="35%" style="color: #ffffff; padding: 6px 12px;font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;"></td>
-</tr>
-<tr>
-    <td align="left" width="25%" style="color: #ffffff; padding: 6px 12px;font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">Best Beat</td>
-    <td align="left" width="40%" style="color: #ffffff; padding: 6px 12px;font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">https://www.youtube.com/watch?v=W3HjqCsUpMU</td>
-    <td align="left" width="35%" style="color: #ffffff; padding: 6px 12px;font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">$ 20.99</td>
-</tr>
-
-              </table>
-            </td>
-          </tr>
-          <!-- end recipt table -->
-
-        </table>
-        <!--[if (gte mso 9)|(IE)]>
+            </tbody></table>
         </td>
-        </tr>
-        </table>
-        <![endif]-->
-      </td>
     </tr>
-    <!-- end copy block -->
+</tbody></table>
+<!-- END Article / Full Width Image + Title + Copy + Button -->
+							
+							
 
-
-
-    <!-- start footer -->
-    <tr>
-      <td align="center" bgcolor="#8b73ee" style="padding: 24px;">
-        <!--[if (gte mso 9)|(IE)]>
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
-        <tr>
-        <td align="center" valign="top" width="600">
-        <![endif]-->
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
-
-          <!-- start permission -->
-          <tr>
-            <td align="center" bgcolor="#8b73ee" style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #ffffff;">
-              <p style="margin: 0;">created using <b>Simplyletters</b> <br>
+							<!-- Footer -->
+							<table width="100%" cellspacing="0" cellpadding="0" border="0">
+								<tbody><tr>
+									<td class="p30-15 bbrr" style="padding: 50px 30px; border-radius:0px 0px 26px 26px;" bgcolor="#F1F1F1">
+										<table width="100%" cellspacing="0" cellpadding="0" border="0">
+											<tbody>
+											
+											<tr>
+												<td class="text-footer2" style="color:#000000; font-family:'Muli', Arial,sans-serif; font-size:12px; line-height:26px; text-align:center;">created using <b>Simplyletters</b> <br>
 an app made with ♥ by Robin Míček
-</p>
-            </td>
-          </tr>
-          <!-- end permission -->
+</td>
+											</tr>
+										</tbody></table>
+									</td>
+								</tr>
+							</tbody></table>
+							<!-- END Footer -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+	</tbody></table>
 
 
-        </table>
-        <!--[if (gte mso 9)|(IE)]>
-        </td>
-        </tr>
-        </table>
-        <![endif]-->
-      </td>
-    </tr>
-    <!-- end footer -->
-
-  </table>
-  <!-- end body -->
-</body>
-</html>
+<script src="moz-extension://fb31e6a1-d4c0-4ca9-abaf-490fea103a4c/js/app.js" type="text/javascript"></script></body>

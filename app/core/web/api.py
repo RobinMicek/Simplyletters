@@ -25,7 +25,6 @@
 # IMPORTS
 import sys
 import os
-from types import new_class
 
 
 
@@ -53,8 +52,6 @@ api = Blueprint(
 
 
 
-
-
 @api.route("/create-newsletter", methods=["POST"])
 def api_create_user():
 
@@ -76,8 +73,7 @@ def api_create_user():
         else:
 
             try:
-                print(request.form)
-
+                # Get footer and logo
                 db = Database()
                 db.connect()
                 db.cursor.execute("""
@@ -92,43 +88,41 @@ def api_create_user():
 
                 logo = x[0]
                 footer = x[1]
-                
-                print(logo, footer)
 
-                paragraphs = [{
-                        "image": "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg",
-                        "header": "Funguje to?",
-                        "text": "Tohle by snad již mohlo fungovat! Uvidíme no..."
-                    },
-                    {
-                        "image": None,
-                        "header": "Second",
-                        "text": "Ipsum Lorem"
-                    }]
-            
-                print(paragraphs)
+
+                # Get id of "user_group" for REST API newsletters
+                db.cursor.execute("""
+                SELECT
+                id
+
+                FROM user_groups
+
+                WHERE name = "API"
+                """)
+                user_group = db.cursor.fetchall()[0][0]
+
+                db.close()
+
 
                 newsletter = Email_Template(
-                    request.form["template-number"],
-                    request.form["color-main"],
-                    request.form["color-accent"],
-                    request.form["color-text"],
+                    request.json["template-number"],
+                    request.json["color-main"],
+                    request.json["color-accent"],
+                    request.json["color-text"],
                     logo,
                     "",
                     footer,
-                    request.form["title"],
-                    request.form["perex"],
-                    request.form["perex-header"],
-                    paragraphs,
-                    request.form["slug"],
-                    0
+                    request.json["title"],
+                    request.json["perex"],
+                    request.json["perex-header"],
+                    [request.json["paragraphs"]],
+                    request.json["slug"],
+                    user_group
                 )
 
-                print("Ok!")
-
-                print(newsletter.paragraphs)
-
                 newsletter.create_newsletter(auth_user)
+
+                newsletter.send_one_email(request.json["email"])
 
                 print("Ok!")
 

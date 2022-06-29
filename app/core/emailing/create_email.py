@@ -46,6 +46,7 @@ import os
 import sys
 
 import smtplib, ssl
+import json
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -139,7 +140,7 @@ class Email_Template():
         paragraphs = paragraphs_file
 
         all_paragraphs = ""
-
+        
         for x in self.paragraphs:
 
             paragraph = paragraphs
@@ -151,8 +152,6 @@ class Email_Template():
             # If not, replace the |?|IMAGE|?| variable with blank ("").
             if len(x["image"]) != 0:
 
-                print(len(x["image"]))
-
                 image_file = f'{open(os.path.join(os.path.dirname(__file__), "templates/email_template_paragraph_image" + str(self.template_number) + ".html"), "r+").read()}'
                 image = image_file.replace("|?|IMAGE|?|", x["image"])  
                 
@@ -161,12 +160,12 @@ class Email_Template():
             
             else:
                 paragraph = paragraph.replace("|?|IMAGE|?|", "")
-    
             
             all_paragraphs = f'{all_paragraphs}{paragraph}'
 
 
         self.template = self.template.replace("|?|PARAGRAPHS|?|", all_paragraphs)
+
 
 
 
@@ -224,8 +223,6 @@ class Email_Template():
 
     def create_newsletter(self, admin):
 
-        print(0)
-
         self.render_email()
         
         render_url = None # self.upload_render()
@@ -250,7 +247,6 @@ class Email_Template():
         ) 
         """)
 
-        print(1)
         database.db.commit()
 
         id = database.cursor.lastrowid
@@ -280,8 +276,6 @@ class Email_Template():
         )
         """)
 
-        print(2)
-
         for x in self.paragraphs:
 
             header = x["header"]
@@ -305,7 +299,6 @@ class Email_Template():
             )
             """)
 
-        print(3)
         id = database.cursor.lastrowid
 
         database.close()
@@ -394,8 +387,6 @@ class Email_Template():
         # Render html template
         self.render_email()
 
-
-
         # Get email credentials 
         db = Database()
         db.connect()
@@ -413,22 +404,7 @@ class Email_Template():
         password = credentials[0][1]
         smtp_server = credentials[0][2]
 
-
-        db.connect()
-        db.cursor.execute(f"""
-        SELECT
-        firstname as name, 
-        email as email,
-     
-        FROM users
-
-        WHERE email = "{email}"
-        """)
-        user = db.cursor.fetchall()[0]
-        db.close()
-
-        user_name = user[0]
-        receiver_email = user[1]  
+        receiver_email = email
 
         message = MIMEMultipart("alternative")
         message["Subject"] = str(self.title)
@@ -438,9 +414,6 @@ class Email_Template():
         # Create the plain-text and HTML version of your message
         #text = "Couldn't load the HTML!"
         html = open(os.path.join(os.path.dirname(__file__), "templates/render.html"), "rb").read().decode('utf-8')
-
-        # Personalize email
-        html = html.replace("|?|NAME|?|", str(user_name))
 
         # Turn these into plain/html MIMEText objects
         #part1 = MIMEText(text, "plain")
