@@ -59,7 +59,8 @@ app.register_blueprint(dashboard_newsletters, url_prefix="/newsletters")
 from connect import connect
 app.register_blueprint(connect, url_prefix="/connected-apps")
 
-
+from api import api
+app.register_blueprint(api, url_prefix="/api")
 
 
 

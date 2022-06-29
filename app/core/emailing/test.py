@@ -14,11 +14,6 @@ paragraphs = [{
         "image": "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg",
         "header": "Funguje to?",
         "text": "Tohle by snad již mohlo fungovat! Uvidíme no..."
-    },
-    {
-        "image": None,
-        "header": "Second",
-        "text": "Ipsum Lorem"
     }]
 name = "Robin"
 slug = "testovaci-newsletterik-BOOM"
