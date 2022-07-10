@@ -382,6 +382,22 @@ class Email_Template():
 
 
 
+
+        
+        # Update record in DB
+        db = Database()
+        db.connect()
+        db.cursor.execute(f"""
+        UPDATE newsletters
+        SET
+        status = 1,
+        sent = '{date_now()}'
+        WHERE id = '{id}'
+        """)
+
+        db.close()
+
+
     def send_one_email(self, email):
 
         # Render html template
@@ -437,18 +453,6 @@ class Email_Template():
 
 
 
-        # Update record in DB
-        db = Database()
-        db.connect()
-        db.cursor.execute(f"""
-        UPDATE newsletters
-        SET
-        status = 1,
-        sent = '{date_now()}'
-        WHERE id = '{id}'
-        """)
-
-        db.close()
 
         
 

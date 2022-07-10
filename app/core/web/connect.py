@@ -79,10 +79,10 @@ def page_connect():
             )
             VALUES
             (
-                '{request.json["name"]}',
-                '{request.json["description"]}',
+                '{request.form["name"]}',
+                '{request.form["description"]}',
                 '{new_key}',
-                '{request.json["user-group"]}'
+                '{request.form["user-group"]}'
             )
             """)
 
@@ -171,9 +171,9 @@ def page_connect_delete():
 @connect.route("/register", methods=["POST"])
 def page_connect_register():
 
-    firstname = request.form.get("firstname", None)
-    surname = request.form.get("surname", None)
-    email = request.form.get("email", None)
+    firstname = request.json.get("firstname", None)
+    surname = request.json.get("surname", None)
+    email = request.json.get("email", None)
     api_key = request.headers.get("Token", None)
 
     print(request.form)
