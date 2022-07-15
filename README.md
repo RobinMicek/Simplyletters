@@ -86,9 +86,9 @@ Token: "simplyletters./<specify token>"
 Content-Type: application/json
 
 {
-"firstname": "<specify firstname>",
-"surname": "<specify surname>",
-"email": "<specify email>"
+    "firstname": "<specify firstname>",
+    "surname": "<specify surname>",
+    "email": "<specify email>"
 }
 ```
 
@@ -112,6 +112,49 @@ There is a script written in Python for testing user's signup for newsletter. Yo
 * In the current version of Simplyletters you cannot use double quotes in any text input due to interference with SQL queries. It should be fixed in future versions.
 
 * You can use **|?|NAME|?|** variable in any of the newsletters texts. When the newsletter is send, it will be replaced with the user's firstname. It will be done for every person in the group the newsletter is targeted on.
+
+
+
+## 📲 Create & Send newsletter via API 📲
+
+Sending newsletters via API is mainly for usage with other apps. It's meant for sending invoices, reset tokens for forgotten password, etc. 
+
+When sending email via API, it can be only delivered to one user/email address and it can only contain one paragraph.
+
+Sending email through API does not require an account with targeted email address created (If there is, it won't make any difference. There is not logic that would pair the email with the account in DB, I was probably just too lazy to implement it 😀).
+
+* First you need to create a group called **"API"**.
+* Then send post request with the newsletter configuration and information about the user. 
+
+```
+POST /api/create-newsletter
+Host: <specify host url>
+user: "<specify admin username>"
+password: "<specify admin password>"
+Content-Type: application/json
+
+{
+    "template-number": <specify template number>,
+    "color-main": "<specify main color>",
+    "color-accent": "<specify accent color>",
+    "color-text": "<specify text color>",
+    "title": "<specify title>",
+    
+    "perex-header": "<specify perex header>",
+    "perex": "<specify perex>",
+
+    "paragraphs": {
+        "image": "<specify image>",
+        "header": "<specify header>",
+        "text": "<specify text>"
+    },
+    "slug": "<specify slug>",
+    "email": "<specify email>"
+}
+```
+
+
+There is a script written in Python for testing this api endpoint. You can find it at */app/tests/api_test.py*
 
 
 
