@@ -15,6 +15,9 @@ Simplyletters is aiming to be a Central Hub for managing newletters from all of 
 
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 
+**External Sources**
+
+Trumbowyg Rich Text Editor
 
 
 ## 🔌 How to Deploy 🔌
