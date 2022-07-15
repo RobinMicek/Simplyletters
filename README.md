@@ -124,7 +124,7 @@ When sending email via API, it can be only delivered to one user/email address a
 Sending email through API does not require an account with targeted email address created (If there is, it won't make any difference. There is no logic that would pair the email with the account in DB, I was probably just too lazy to implement it 😀).
 
 * First you need to create a group called **"API"**.
-* Then send post request with the newsletter configuration and information about the user. 
+* Then send a post request with the newsletter configuration and information about the user. 
 
 ```
 POST /api/create-newsletter
