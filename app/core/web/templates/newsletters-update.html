@@ -157,7 +157,7 @@
             </div>
 
 
-
+            <br><br>
             <button type="submit">
                 <h2>
                     <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
@@ -167,14 +167,68 @@
                 </h2>
             </button>
         </form>
+        
 
-        <br><br>
+        <div style="text-align: center; padding: 10%;">
+
+            <form action="/newsletters/add-paragraph" method="POST">
+                <input type="hidden" value="{{x['id']}}" name="id">
+
+                <label>
+                    <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                        title
+                    </span>
+                    Paragraph Heading
+                </label> <br>
+                <input type="text" name="header" required>
+
+                <br><br>
+                <label>
+                    <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                        image
+                    </span>
+                    Paragraph Image
+                </label> <br>
+                <input type="text" name="image" required>
+
+                <br><br>
+                <label>
+                    <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                        view_headline
+                    </span>
+                    Paragraph Text
+                </label> <br>
+                <textarea name="text" id="trumbowyg-paragraph-text" style="width: 50% !important" required></textarea>
+
+                <br><br>    
+                <button type="submit">
+                    <h2>
+                        <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                            post_add
+                        </span>
+                        ADD
+                    </h2>
+                </button>
+            </form>
+
+        
+        <!-- Text Editor Init -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+
+        <script src="/static/trumbowyg/trumbowyg.min.js"></script>
+
+        <script>
+            $('#trumbowyg-paragraph-text').trumbowyg();
+        </script>
+
+        </div>
 
 
 
         <div>
             <div>
-                <br><br>
+                <br>
                 <table style="width: 90%; text-align: left;">
     
                     <tr>
@@ -204,7 +258,10 @@
                     </tr>
     
     
-    
+                    <!-- 
+                        Old form for adding paragraphs
+                        - Switched to Trumbowyg text editor.
+
                     <tr div="table-form" id="paragraphs">
     
                         <form action="/newsletters/add-paragraph" method="POST">
@@ -229,6 +286,8 @@
                         </form>
     
                     </tr>
+                    
+                    -->
 
                     {% for p in paragraph_data %}
                         <tr div="table-form">

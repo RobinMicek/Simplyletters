@@ -286,8 +286,8 @@ def page_newsletters_update():
 def page_newsletters_add_paragraph():
 
     if session.get("admin", None) != None:
-
-
+        
+        # Fix at SQL query - requests.form Text - Cannot use "", they interfere with the database queries. 
         db = Database()
         db.connect()
         db.cursor.execute(f"""
@@ -303,8 +303,9 @@ def page_newsletters_add_paragraph():
         (
             {request.form["id"]},
             "{request.form["header"]}",
-            "{request.form["text"]}",
+            "{str(request.form["text"]).replace('"', "'")}", 
             "{request.form["image"]}"
+
         )
         """)
 
