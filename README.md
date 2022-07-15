@@ -17,7 +17,10 @@ Simplyletters is aiming to be a Central Hub for managing newletters from all of 
 
 **External Sources**
 
-Trumbowyg Rich Text Editor
+* Trumbowyg Rich Text Editor
+* Google Fonts & Icons
+* Konstantin Savchenko Email Template
+
 
 
 ## 🔌 How to Deploy 🔌
