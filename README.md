@@ -1,6 +1,6 @@
 # Simplyletters
 
-![GitHub](https://img.shields.io/github/license/robinmicek/simplyletters)
+![GitHub](https://img.shields.io/github/license/robinmicek/Simplyletters)
 ![GitHub last commit](https://img.shields.io/github/last-commit/robinmicek/simplyletters)
 
 Open Source Web based Tool for Creating and Sending Newsletters.
