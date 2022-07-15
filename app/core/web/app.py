@@ -67,5 +67,5 @@ app.register_blueprint(api, url_prefix="/api")
 
 while __name__ == "__main__":
     app.run(
-        debug=True
+        debug=False
     )   
