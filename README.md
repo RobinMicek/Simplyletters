@@ -3,6 +3,11 @@
 ![GitHub](https://img.shields.io/github/license/robinmicek/Simplyletters)
 ![GitHub last commit](https://img.shields.io/github/last-commit/robinmicek/simplyletters)
 
+![GitHub Release Date](https://img.shields.io/github/release-date/robinmicek/simplyletters)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/robinmicek/simplyletters)
+
+![Lines of code](https://img.shields.io/tokei/lines/github/robinmicek/simplyletters)
+
 Open Source Web based Tool for Creating and Sending Newsletters.
 
 Simplyletters is aiming to be a Central Hub for managing newletters from all of your apps.
