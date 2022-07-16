@@ -8,7 +8,7 @@
         <br>
         <h1>
             <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
-                group
+                MAIL
             </span>
             NEWSLETTERS
         </h1>
@@ -55,7 +55,12 @@
                         <td>{{x[1]}}</td>
                         
                         <td>
-                            {% if x[2] == 0 %}
+                            {% if x[1] == "API" %}
+                                <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
+                                    webhook
+                                </span>
+
+                            {% elif x[2] == 0 %}
                                 <span class="material-symbols-rounded vertical-align-middle padding-bottom-3">
                                     unsubscribe
                                 </span>
