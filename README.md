@@ -53,7 +53,7 @@ $ gunicorn --bind 0.0.0.0.:"<port>" app:app
 
 
 ## 🔐 Enviroment Variables 🔐
-Simplyletters runs on **MySQL Database**. Please note that the database needs to be clean **with no data or tables inside**. Otherwise you won't be able to proceed to do the *First Time Setup*.
+Simplyletters runs on **MySQL Database**. Please note that the database needs to be clean **with no data or tables inside**. Otherwise you won't be able to proceed to the *First Time Setup*.
 
 **SL_DATABASE_HOST** - Database host url
 
@@ -69,15 +69,15 @@ Simplyletters runs on **MySQL Database**. Please note that the database needs to
 
 ## 💻 How to Work with Simplyletters 💻
 
-**Groups** - In Simplyletters you cannot send newsletter to only a one certain user *(you can through the API)*, but rather to a certain group of users. The group is specified when creating API key for signing users up.
+**Groups** - In Simplyletters you cannot send newsletter to only a one certain user *(you can through the API)*, but rather to a group of users. The group is specified when creating API key for signing users up.
 
 **Settings** - Here you can change your email configuration *(you will be prompted to input your email info in the First Time Setup)* and your logo and footer that will be used in newsletters.
 
 **Admin** - Create and delete admin accounts.
 
 **Connected Apps** - Connected app is an app, from which users can sign up for your newsletters.
-* First generate an API key for your app (like a website when you have the *Sign Up for Newsletter* prompt). Choose a group to which the users will be assigned.
-* Then you send a post request with the user information:
+* First generate an API key for your app. Choose a group to which the users will be assigned.
+* Then you send a post request with the user information (it can be like a *sign up for our newsletter* prompt on a website):
 
 ```
 POST /connected-apps/register
@@ -95,11 +95,11 @@ Content-Type: application/json
 There is a script written in Python for testing user's signup for newsletter. You can find it at */app/tests/connect_test.py*
 
 **Newletters**
-* To create new newsletter go to the newsletters app and click on the plus icon, fill out the details and click on create.
+* To create new newsletter go to the newsletters tab and click on the plus icon, fill out the details and click on create.
 
 ![New Newsletter](/img/newsletter-new.png)
 
-* You will be redirected back to the page with all newsletter, click on the newly created newsletter and add paragraphs. 
+* You will be redirected back to the page with all newsletters, click on the newly created newsletter and add paragraphs. 
 
 ![Newsletter Paragraphs](/img/newsletter-paragraphs.png)
 
@@ -117,14 +117,14 @@ There is a script written in Python for testing user's signup for newsletter. Yo
 
 ## 📲 Create & Send newsletter via API 📲
 
-Sending newsletters via API is mainly for usage with other apps. It's meant for sending invoices, reset tokens for forgotten password, etc. 
+Sending newsletters via API is mainly meant for usage with other apps. Like sending invoices, reset tokens for forgotten passwords, etc. 
 
 When sending email via API, it can be only delivered to one user/email address and it can only contain one paragraph.
 
 Sending email through API does not require an account with targeted email address created (If there is, it won't make any difference. There is no logic that would pair the email with the account in DB, I was probably just too lazy to implement it 😀).
 
 * First you need to create a group called **"API"**.
-* Then send a post request with the newsletter configuration and information about the user. 
+* Then send a post request with the newsletter configuration and user's email address. 
 
 ```
 POST /api/create-newsletter
