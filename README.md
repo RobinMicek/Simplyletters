@@ -109,7 +109,7 @@ There is a script written in Python for testing user's signup for newsletter. Yo
 
 * Adding the cover image is optional.
 
-* In the current version of Simplyletters you cannot use double quotes in any text input due to interference with SQL queries. It should be fixed in future versions.
+* In the current version of Simplyletters you cannot use double quotes in any text input due to interference with SQL. It should be fixed in future versions.
 
 * You can use **|?|NAME|?|** variable in any of the newsletters texts. When the newsletter is send, it will be replaced with the user's firstname. It will be done for every person in the group the newsletter is targeted on.
 
