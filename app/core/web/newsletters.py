@@ -82,7 +82,12 @@ def page_newsletters():
         newsletters = db.cursor.fetchall() 
         db.close()
 
-        return render_template("newsletters.html", admin=session["admin"], newsletters=newsletters)
+        # Check for API
+        show_api = False
+        if request.args.get("api", None) == "True":
+            show_api = True
+
+        return render_template("newsletters.html", admin=session["admin"], newsletters=newsletters, show_api=show_api)
 
 
     else:
