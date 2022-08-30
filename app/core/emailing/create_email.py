@@ -381,9 +381,6 @@ class Email_Template():
                 )
 
 
-
-
-        
         # Update record in DB
         db = Database()
         db.connect()
