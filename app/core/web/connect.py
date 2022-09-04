@@ -277,11 +277,17 @@ def page_connect_register():
 
                 return "Ok!"
 
+
+            db.close()
+
             return "User already exists in this group!"
 
-            
+        
 
         else:
+
+            db.close()
+            
             return "Invalid token!"
         
 
