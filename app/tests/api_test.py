@@ -24,6 +24,6 @@ h = {
     "password": "<password>"
 }
 
-r = requests.post("http://127.0.0.1:5000/api/create-newsletter", headers=h, json=data)
+r = requests.post("<specify host>/api/create-newsletter", headers=h, json=data)
 
 print(r.text)

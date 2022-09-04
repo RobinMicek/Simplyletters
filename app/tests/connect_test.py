@@ -1,9 +1,9 @@
 import requests
 
-url = "http://simplyletters.herokuapp.com/connected-apps/register"
+url = "<specify host>/connected-apps/register"
 
 headers = {
-    "Token": "simplyletters./IFTROGUESWZWORFG"
+    "Token": "<specify connect token>"
 }
 
 data = {
