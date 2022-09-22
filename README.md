@@ -29,6 +29,31 @@ Simplyletters is aiming to be a Central Hub for managing newletters from all of 
 
 
 ## 🔌 How to Deploy 🔌
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+
+The provided docker image runs on the latest version of _Ubuntu_, feel free to 
+change it to e.g. _Alpine_ for smaller and more efficient image/container. 
+
+First build the Docker Image (will be published on Docker Hub in the future)
+```bash
+$ docker build -t robinmicek/simplyletters .
+```
+and then run the container
+```bash
+$ docker run \
+--name "<Container Name>" \
+\
+-p "<Port>":8000 \
+\
+-e SL_DATABASE_HOST="<Database Host>" \
+-e SL_DATABASE_NAME="<Database Name>" \
+-e SL_DATABASE_PASSWORD="<Database Password>" \
+-e SL_DATABASE_USER="<Database Username>" \
+-e SL_SECRET-KEY="<Flask Secret Key for session variables>" \
+\
+robinmicek/simplyletters
+```
+
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
     Heroku ready - Deploy to Heroku with no further configuration necessary
