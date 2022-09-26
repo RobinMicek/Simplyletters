@@ -36,7 +36,7 @@ rebuild the image (from the Dockerfile) to e.g. _Alpine_ for smaller and more ef
 
 First pull the Docker Image from Docker Hub (https://hub.docker.com/r/robinmicek/simplyletters)
 ```bash
-$ docker pull robinmicek/simplyletters:ubuntu-latest
+$ docker pull robinmicek/simplyletters:<specify release version (e.g. "v1.5")>
 ```
 and then run the container
 ```bash
