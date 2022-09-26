@@ -32,11 +32,11 @@ Simplyletters is aiming to be a Central Hub for managing newletters from all of 
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 
 The provided docker image runs on the latest version of _Ubuntu_, feel free to 
-change it to e.g. _Alpine_ for smaller and more efficient image/container. 
+rebuild the image (from the Dockerfile) to e.g. _Alpine_ for smaller and more efficient image/container. 
 
-First build the Docker Image (will be published on Docker Hub in the future)
+First pull the Docker Image from Docker Hub (https://hub.docker.com/r/robinmicek/simplyletters)
 ```bash
-$ docker build -t robinmicek/simplyletters .
+$ docker pull robinmicek/simplyletters:ubuntu-latest
 ```
 and then run the container
 ```bash
