@@ -125,7 +125,6 @@ def page_dashboard_settings():
             email_credentials
             SET
             email = '{request.form["email"]}',
-            password = '{request.form["password"]}',
             smtp_server = '{request.form["smtp"]}'
             """)
 
