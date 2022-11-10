@@ -1,9 +1,5 @@
 """
 ******************************************
-    
-    ABOUT THIS CODE
-
------------------------------------------- 
 
     This code is part of SimplyLetters
 
@@ -17,7 +13,6 @@
 
 ******************************************
 """
-
 
 
 # Simplyletters uses Dropbox to store email images and other data.

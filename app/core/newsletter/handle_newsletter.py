@@ -1,9 +1,5 @@
 """
 ******************************************
-    
-    ABOUT THIS CODE
-
------------------------------------------- 
 
     This code is part of SimplyLetters
 
@@ -57,21 +53,19 @@ from email.mime.multipart import MIMEMultipart
 root_folder = os.path.abspath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(root_folder)
 
-from database.database_connection import Database
-
-from handle_dropbox import Handle_Dropbox
+from database.handle_database import Database
 
 from date import date_now
 
 
-class Email_Template():
+class Newsletter():
     
     def __init__(self,
-        template_number,
-        color_main, color_accent, color_text, logo, image_cover,
-        footer, title, perex, perex_header,
-        paragraphs,
-        slug, user_group
+        template_number = None,
+        color_main = None, color_accent = None, color_text = None, logo = None,
+        footer = None, title = None, perex = None, perex_header = None,
+        paragraphs = None,
+        slug = None, user_group = None
         ):
 
         self.template_number = template_number
@@ -84,9 +78,7 @@ class Email_Template():
         self.color_accent = color_accent
         self.color_text= color_text
 
-        self.image_cover = image_cover
         self.logo = logo
-
 
         self.perex_header = perex_header
         self.footer = footer
@@ -115,7 +107,7 @@ class Email_Template():
 
 
     def add_logos(self):
-
+        
         self.template = self.template.replace("|?|LOGO|?|", self.logo)
 
     
@@ -143,6 +135,8 @@ class Email_Template():
         
         for x in self.paragraphs:
 
+            print(x)
+
             paragraph = paragraphs
 
             paragraph = paragraph.replace("|?|HEADER|?|", x["header"])
@@ -165,7 +159,6 @@ class Email_Template():
 
 
         self.template = self.template.replace("|?|PARAGRAPHS|?|", all_paragraphs)
-
 
 
 
@@ -207,50 +200,30 @@ class Email_Template():
         file_flask.write(self.template)
 
 
-
-
-
-    # def upload_render(self):
-    #
-    #    dp = Handle_Dropbox()
-    #
-    #    render = open(os.path.join(os.path.dirname(__file__), "templates/render.html"), "rb").read()
-    #
-    #    url = dp.upload("render.html", render, f"/{self.make_slug()}/")
-    #
-    #    return url 
-
-
-    def create_newsletter(self, admin):
+    def create_newsletter(self, admin = None):
 
         self.render_email()
-        
-        render_url = None # self.upload_render()
 
+        # Add data to database
         database = Database()
         database.connect()
         database.cursor.execute(f"""
         INSERT INTO newsletters
         (
             user_group,
-            html_render, 
             slug,
             created,
-            created_by)
+            created_by
+        )
         VALUES
         (
-            {int(self.user_group)},
-            '{render_url}',
+            '{self.user_group}',
             '{self.make_slug()}',
             '{date_now()}',
             '{admin}'
-        ) 
+        )
         """)
-
-        database.db.commit()
-
-        id = database.cursor.lastrowid
-
+    
         database.cursor.execute(f"""
         INSERT INTO newsletters_content
         (
@@ -265,16 +238,18 @@ class Email_Template():
         )
         VALUES
         (
-            {id},
-            "{self.template_number}",
-            "{self.color_main}",
-            "{self.color_accent}",
-            "{self.color_text}",
-            "{self.title}",
-            "{self.perex}",
-            "{self.perex_header}"
+            LAST_INSERT_ID(),
+            '{self.template_number}',
+            '{self.color_main}',
+            '{self.color_accent}',
+            '{self.color_text}',
+            '{self.title}',
+            '{self.perex}',
+            '{self.perex_header}'
         )
         """)
+
+        id = database.cursor.lastrowid
 
         for x in self.paragraphs:
 
@@ -292,76 +267,116 @@ class Email_Template():
             )
             VALUES
             (
-                {id},
+                '{id}',
                 '{header}',
                 '{text}',
                 '{image}'
             )
             """)
 
-        id = database.cursor.lastrowid
 
         database.close()
 
         return id
 
 
-    def send_email(self, id):
+    def send_email(self,
+        id = None,
+        group = None, email = None):
 
-        # Render html template
-        self.render_email()
+        # This function can send emails to both people in group or
+        # to a individual email.
+        # Set group = True for multiple users in group,
+        # Set group = False and email = "email" for individual email
+
+        
+        # Render newsletter
+        # self.render_email()
 
 
-
-        # Get email credentials 
         db = Database()
         db.connect()
+
+        # Get email credentials 
         db.cursor.execute("""
-            SELECT
-            email, password, smtp_server
-            FROM
-            email_credentials
-            """)
-        credentials = db.cursor.fetchall()
-        db.close()
-        
-
-        sender_email = credentials[0][0]
-        password = credentials[0][1]
-        smtp_server = credentials[0][2]
-
-
-        db.connect()
-        db.cursor.execute(f"""
         SELECT
-        users.firstname as name, 
-        users.email as email,
-        users_in_groups.group_id as ID
-
-        FROM users
-        INNER JOIN users_in_groups
-        ON users.id = users_in_groups.user_id 
-
-        WHERE users_in_groups.group_id = '{self.user_group}'
+        email, password, smtp_server
+        FROM
+        email_credentials
         """)
-        users = db.cursor.fetchall()
-        db.close()
+        credentials = db.cursor.fetchall()[0]
+        
+        sender_email = credentials["email"]
+        password = credentials["password"]
+        smtp_server = credentials["smtp_server"]
 
-        for x in users:
-            user_name = x[0]
-            receiver_email = x[1]  
+        
+        def send_email_group():
 
+            db.cursor.execute(f"""
+            SELECT
+            users.firstname as name, 
+            users.email as email,
+            users_in_groups.group_id as id
+
+            FROM users
+            INNER JOIN users_in_groups
+            ON users.id = users_in_groups.user_id 
+
+            WHERE users_in_groups.group_id = '{self.user_group}'
+            """)
+
+            users = db.cursor.fetchall()
+
+
+            for x in users:
+                user_name = x["name"]
+                receiver_email = x["email"]  
+
+                message = MIMEMultipart("alternative")
+                message["Subject"] = str(self.title)
+                message["From"] = sender_email
+                message["To"] = receiver_email
+
+                # Create the plain-text and HTML version of your message
+                #text = "Couldn't load the HTML!"
+                html = open(os.path.join(os.path.dirname(__file__), "templates/render.html"), "rb").read().decode('utf-8')
+
+                # Personalize email
+                html = html.replace("|?|NAME|?|", str(user_name))
+
+                # Turn these into plain/html MIMEText objects
+                #part1 = MIMEText(text, "plain")
+                part2 = MIMEText(html, "html")
+
+                # Add HTML/plain-text parts to MIMEMultipart message
+                # The email client will try to render the last part first
+                #message.attach(part1)
+                message.attach(part2)
+
+                # Create secure connection with server and send email
+                # context = ssl.create_default_context()
+                with smtplib.SMTP_SSL(smtp_server) as server:
+                    server.login(sender_email, password)
+                    server.sendmail(
+                        sender_email, receiver_email, message.as_string()
+                    )
+
+
+        
+        def send_email_single():
+           
             message = MIMEMultipart("alternative")
             message["Subject"] = str(self.title)
             message["From"] = sender_email
-            message["To"] = receiver_email
+            message["To"] = email
 
             # Create the plain-text and HTML version of your message
             #text = "Couldn't load the HTML!"
             html = open(os.path.join(os.path.dirname(__file__), "templates/render.html"), "rb").read().decode('utf-8')
 
             # Personalize email
-            html = html.replace("|?|NAME|?|", str(user_name))
+            html = html.replace("|?|NAME|?|", "")
 
             # Turn these into plain/html MIMEText objects
             #part1 = MIMEText(text, "plain")
@@ -377,10 +392,19 @@ class Email_Template():
             with smtplib.SMTP_SSL(smtp_server) as server:
                 server.login(sender_email, password)
                 server.sendmail(
-                    sender_email, receiver_email, message.as_string()
+                    sender_email, email, message.as_string()
                 )
 
+    
+        if group == True:
 
+            send_email_group()
+
+        elif group == False and email != None:
+
+            send_email_single()
+        
+        
         # Update record in DB
         db = Database()
         db.connect()
@@ -393,73 +417,3 @@ class Email_Template():
         """)
 
         db.close()
-
-
-    def send_one_email(self, email):
-
-        # Render html template
-        self.render_email()
-
-        # Get email credentials 
-        db = Database()
-        db.connect()
-        db.cursor.execute("""
-            SELECT
-            email, password, smtp_server
-            FROM
-            email_credentials
-            """)
-        credentials = db.cursor.fetchall()
-        db.close()
-        
-
-        sender_email = credentials[0][0]
-        password = credentials[0][1]
-        smtp_server = credentials[0][2]
-
-        receiver_email = email
-
-        message = MIMEMultipart("alternative")
-        message["Subject"] = str(self.title)
-        message["From"] = sender_email
-        message["To"] = receiver_email
-
-        # Create the plain-text and HTML version of your message
-        #text = "Couldn't load the HTML!"
-        html = open(os.path.join(os.path.dirname(__file__), "templates/render.html"), "rb").read().decode('utf-8')
-
-        # Turn these into plain/html MIMEText objects
-        #part1 = MIMEText(text, "plain")
-        part2 = MIMEText(html, "html")
-
-        # Add HTML/plain-text parts to MIMEMultipart message
-        # The email client will try to render the last part first
-        #message.attach(part1)
-        message.attach(part2)
-
-        # Create secure connection with server and send email
-        # context = ssl.create_default_context()
-        with smtplib.SMTP_SSL(smtp_server) as server:
-            server.login(sender_email, password)
-            server.sendmail(
-                sender_email, receiver_email, message.as_string()
-            )
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-    
-
-
-

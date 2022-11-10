@@ -1,9 +1,5 @@
 """
 ******************************************
-    
-    ABOUT THIS CODE
-
------------------------------------------- 
 
     This code is part of SimplyLetters
 
@@ -17,7 +13,6 @@
 
 ******************************************
 """
-
 # IMPORTS
 import sys
 import os
@@ -29,7 +24,7 @@ import hashlib
 root_folder = os.path.abspath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(root_folder)
 
-from database.database_connection import Database
+from database.handle_database import Database
 
 
 

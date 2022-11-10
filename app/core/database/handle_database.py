@@ -1,9 +1,5 @@
 """
 ******************************************
-    
-    ABOUT THIS CODE
-
------------------------------------------- 
 
     This code is part of SimplyLetters
 
@@ -18,11 +14,13 @@
 ******************************************
 """
 
-
-# IMPORTS
-import mysql.connector
+# PACKAGES IMPORTS
 import os
 import sys
+
+import mysql.connector
+
+# IMPORTS FROM PACKAGES
 
 # IMPORTS FROM OTHER FILES
 # Fix
@@ -30,29 +28,37 @@ root_folder = os.path.abspath(os.path.dirname(os.path.dirname(os.path.abspath(__
 sys.path.append(root_folder)
 
 
+# IMPORT CONSTANT VARIABLES (/app/variables.py)
+from variables import DB_HOST, DB_NAME, DB_USER, DB_PASSWORD, DB_SSL_CA
+
+
 class Database():
 
     def __init__(self):
 
-        self.name = os.environ.get("SL_DATABASE_NAME", None) 
-        self.user = os.environ.get("SL_DATABASE_USER", None) 
-        self.password = os.environ.get("SL_DATABASE_PASSWORD", None) 
+        self.name = DB_NAME
+        self.user = DB_USER 
+        self.password = DB_PASSWORD 
 
-        self.host = os.environ.get("SL_DATABASE_HOST", None) 
+        self.host = DB_HOST
+        self.ssl_ca = DB_SSL_CA 
     
 
     def connect(self):
 
-        self.db = mysql.connector.connect(
-            database=self.name, 
-            user = self.user, 
-            password = self.password, 
-            host = self.host, 
-            port = "3306"
-            )
+        config = {
+            "database": self.name, 
+            "user": self.user, 
+            "password": self.password, 
+            "host": self.host, 
+            "port": "3306",
+            "buffered": True
+        }
+
+        self.db = mysql.connector.connect(**config)
 
 
-        self.cursor = self.db.cursor()
+        self.cursor = self.db.cursor(dictionary=True)
 
 
     def close(self):
@@ -69,11 +75,13 @@ class Database():
 
         for x in self.handle_sql_file("init.sql"):
 
-            print("\n----", x, "\n----")
+            print("\n----\n", x, "\n----")
 
             self.cursor.execute(x)
 
         self.close()
+
+        print("[ALERT] Database has been inicialized!")
 
 
     def clear(self):
@@ -84,23 +92,24 @@ class Database():
         try:
             for x in self.handle_sql_file("clear.sql"):
 
-                print("\n----", x, "\n----")
+                print("\n----\n", x, "\n----")
 
                 self.cursor.execute(x)
         
         except:
-            print("Could not clear the DB!")
+            print("[ERROR] Could not clear the DB!")
 
 
         self.close()
 
+        print("[ALERT] Database has been cleaned!")
 
 
     def handle_sql_file(self, filemane):
         # This function takes a SQL script file and splits it into
         # individual statements. 
         # I'm doing this because I had problems with executing multiple statements 
-        # as one using cursor.exetute(x, multi=True)
+        # as one using cursor.execute(x, multi=True)
 
         # This function only takes files from the /sql/ directory
 
