@@ -134,9 +134,7 @@ class Newsletter():
         all_paragraphs = ""
         
         for x in self.paragraphs:
-
-            print(x)
-
+            
             paragraph = paragraphs
 
             paragraph = paragraph.replace("|?|HEADER|?|", x["header"])
@@ -196,7 +194,7 @@ class Newsletter():
         # Also need to save it into 'static' flask friendly folder for ability to preview it
         # from the flask app
         parent_dir = os.path.abspath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        file_flask = open(os.path.join(parent_dir, "web/static/renders/render.html"), "w+", encoding="utf-8")
+        file_flask = open(os.path.join(parent_dir, "web/files/renders/render.html"), "w+", encoding="utf-8")
         file_flask.write(self.template)
 
 
