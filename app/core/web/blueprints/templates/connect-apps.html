@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% include 'nav.html' %}
+
+{% block content %}
+
+
+<div class="card mb-6">
+    <div class="card-header">
+        <i class="fas fa-circle-nodes me-1"></i>
+        Connect apps
+      </div>
+    </div>
+    <div class="card-body">
+
+        
+        <form method="POST" action="/connect-apps">
+
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-signature"></i></th>
+                        <th><i class="fas fa-user-tie"></i></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>                            
+                            <div class="form-group">
+                                <input type="name" class="form-control" placeholder="My App" name="name" required>
+                            </div>
+                        </td>
+
+                        <td>                            
+                           <div class="formm-group">
+                                <select class="form-control" id="user-group" name="user-group" required>
+                                    {% for x in user_groups %}
+                        
+                                    <option value="{{ x['id'] }}">{{ x['name'] }}</option>
+                        
+                                    {% endfor %}
+                                </select>
+                           </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="This is my awesome app." name="description" required>
+                            </div>
+                        </td>
+
+                        <td></td>
+
+                        <td>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="fas fa-plus"></i> Create
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    {% for app in apps %}
+                        
+                            <tr>
+                                <td>{{ app['name'] }}</td>
+                                <td>{{ app['user_group'] }}</td>
+                                <td>{{ app['description'] }}</td>
+                                <td>{{ app['api_key'] }}</td>
+                                <td>
+                                    <a href="/connect-app/delete?id={{ app['id'] }}">
+                                        <button type="button" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash me-1"></i> Delete
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                    
+                    {% endfor%}
+                    
+                </tbody>
+            </table>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,7 @@
+textarea {
+    font-family: var(--bs-body-font-family) !important;
+}
+
+.textarea-font {
+    font-family: var(--bs-body-font-family) !important;
+}

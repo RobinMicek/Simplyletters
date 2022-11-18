@@ -1,0 +1,74 @@
+<!-- Modal -->
+<div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <h5 class="modal-title" id="exampleModalLabel">Send Newsletter</h5>
+
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
+            <i class="fas fa-x me-1"></i>
+          </button>
+
+        </div>
+        
+        
+        <div class="modal-body">
+
+            <div align="center">
+
+                <form method="POST" action="/newsletter/send">
+
+                    <!-- Action = Email -->
+                    <input type="hidden" value="group" name="action">
+                    
+                    <!-- Newsletter ID -->
+                    <input type="hidden" name="id" value="{{ newsletter['id'] }}">
+
+                    <div class="form-group">
+                        <label for="user-group"><i class="fas fa-user-group me-1"></i> User Group</label>
+                        <select class="form-control" id="user-group" name="user-group" readonly>
+                        <option value="{{ newsletter['user_group_id'] }}" selected>{{ newsletter['user_group'] }}</option>
+                        </select>
+                    </div>
+
+                    <br>
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="fas fa-paper-plane me-1"></i> Send to User Group
+                    </button>
+
+                </form>
+
+            </div>
+
+            <br><br><br>
+
+            <div align="center">
+
+                <form method="POST" action="/newsletter/send">
+
+                    <!-- Action = Email -->
+                    <input type="hidden" value="email" name="action">
+                    
+                    <!-- Newsletter ID -->
+                    <input type="hidden" name="id" value="{{ newsletter['id'] }}">
+
+                    <div class="form-group">
+                        <label for="email" class="form-label"><i class="fas fa-envelope me-1"></i> Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                    </div>
+
+                    <br>
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="fas fa-paper-plane me-1"></i> Send to Email
+                    </button>
+
+                </form>
+
+            </div>
+        
+        </div>
+
+      </div>
+    </div>
+</div>

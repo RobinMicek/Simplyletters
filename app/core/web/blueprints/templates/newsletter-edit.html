@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+
+{% include 'nav.html' %}
+
+{% block content %}
+<div class="card mb-6">
+    <div class="card-header">
+        <i class="fas fa-newspaper me-1"></i>
+        Edit Newsletter
+
+        <div align="right">
+
+          <div class="btn-group" role="group">
+
+            <a href="/newsletter/render?id={{ newsletter['id'] }}" target="_blank" class="text-danger">
+              <button type="button" class="btn btn-danger">
+                <i class="fas fa-eye me-1"></i>
+              </button>
+            </a>
+            
+            <!-- Button trigger modal -->
+            {% include 'newsletter-send-modal.html' %}
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#sendModal">
+              <i class="fas fa-share me-1"></i>
+            </button>
+
+            <a href="/newsletter/delete?id={{ newsletter['id'] }}" class="text-danger">
+              <button type="button" class="btn btn-danger">
+                <i class="fas fa-trash me-1"></i>
+              </button>
+            </a>
+
+          </div>
+  
+        </div>
+
+    </div>
+</div> 
+
+<br>
+
+
+<form method="POST" action="/newsletter/edit">
+
+  <!-- Newsletter ID -->
+  <input type="hidden" name="id" value="{{ newsletter['id'] }}">
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+
+        <div class="form-group">
+          <label for="title"><i class="fas fa-heading me-1"></i> Title</label>
+          <input type="text" class="form-control" id="title" placeholder="My Newletter" name="title" required value="{{ newsletter['title'] }}" readonly>
+        </div>
+
+        <br>
+
+        <div class="form-group">
+          <label for="slug"><i class="fas fa-hashtag me-1"></i> Slug</label>
+          <input type="text" class="form-control" id="slug" placeholder="2022-10-11-My-Newletter" name="slug" required value="{{ newsletter['slug'] }}" readonly>
+        </div>
+
+        <br>
+
+        <div class="form-group">
+          <label for="user-group"><i class="fas fa-user-group me-1"></i> User Group</label>
+          <select class="form-control" id="user-group" name="user-group" required readonly>
+            <option value="{{ newsletter['user_group_id'] }}" selected>{{ newsletter['user_group'] }}</option>
+          </select>
+        </div>
+
+        <br>
+
+        <div class="form-group">
+          <label for="template"><i class="fas fa-file-pen me-1"></i> Newletter Template</label>
+          <select class="form-control" id="template" name="template" required>
+            <option value="1">Classical</option>
+            <option value="2">Modern</option>
+            <option value="3">Receipt</option>
+            <option value="4">Simple</option>
+          </select>
+        </div>
+        
+        <br>
+
+        <div class="form-group">
+          <label for="color-main" class="form-label"><i class="fas fa-palette me-1"></i> Main</label>
+          <input type="color" style="width: 100%;" class="form-control form-control-color" id="color-main" title="Choose main color" name="color-main" required value="{{ newsletter['color_main'] }}">
+
+          <br>
+
+          <label for="color-accent" class="form-label"><i class="fas fa-palette me-1"></i> Accent</label>
+          <input type="color" style="width: 100%;" class="form-control form-control-color" id="color-accent" title="Choose accent color" name="color-accent" required value="{{ newsletter['color_accent'] }}">
+
+          <br>
+
+          <label for="color-text" class="form-label"><i class="fas fa-palette me-1"></i> Text</label>
+          <input type="color" style="width: 100%;" class="form-control form-control-color" id="color-text" title="Choose text color" name="color-text" required value="{{ newsletter['color_text'] }}">
+        </div>
+
+      </div>
+
+      <div class="col-sm">
+
+        <div class="form-group">
+          <label for="heading"><i class="fas fa-heading me-1"></i> Heading</label>
+          <textarea class="form-control" id="heading" rows="3" name="heading" required>{{ newsletter['perex_header'] }}</textarea>
+        </div>
+
+        <br>
+
+
+        <!-- Trumbowyg -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.25.2/trumbowyg.min.js" integrity="sha512-mBsoM2hTemSjQ1ETLDLBYvw6WP9QV8giiD33UeL2Fzk/baq/AibWjI75B36emDB6Td6AAHlysP4S/XbMdN+kSA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.25.2/ui/trumbowyg.min.css" integrity="sha512-K87nr2SCEng5Nrdwkb6d6crKqDAl4tJn/BD17YCXH0hu2swuNMqSV6S8hTBZ/39h+0pDpW/tbQKq9zua8WiZTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <div class="form-group">
+          <label for="perex"><i class="fas fa-paragraph me-1"></i> Perex</label>
+          <textarea class="form-control" id="perex" rows="3" name="perex" style="font-family: var(--bs-body-font-family) !important" required>{{ newsletter['perex'] }}</textarea>
+        </div>
+
+        <script>
+          $('#perex').trumbowyg();
+        </script>
+
+        <br><br><br>
+
+        <div class="form-group" align="center">
+          <button type="submit" class="btn btn-lg btn-danger">
+            <i class="fas fa-repeat me-1"></i> Update
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</form>
+
+
+<br>
+<div class="card mb-6">
+  <div class="card-header">
+      <i class="fas fa-paragraph me-1"></i>
+      Add Paragraph
+  </div>
+</div> 
+
+<br>
+
+<form method="POST" action="/newsletter/add-paragraph">
+  
+  <div class="container">
+    <div class="row">
+
+      <!-- Newsletter ID -->
+      <input type="hidden" name="id" value="{{ newsletter['id'] }}">
+
+
+      <div class="col-sm">
+
+        <div class="form-group">
+          <label for="paragraph_title" class="fas fa-heading me-1"></i> Title</label>
+          <input type="text" class="form-control" id="paragraph_title" placeholder="My Newletter" name="paragraph_title" required>
+        </div>
+
+        <br>
+        
+        <div class="form-group">
+          <label for="paragraph_image"><i class="fas fa-image me-1"></i> Image</label>
+          <input type="url" class="form-control" id="paragraph_image" placeholder="My Newletter" name="paragraph_image">
+        </div>
+
+        <br><br><br>
+
+        <div class="form-group" align="center">
+          <button type="submit" class="btn btn-lg btn-danger">
+            <i class="fas fa-plus me-1"></i> Add Paragraph
+          </button>
+        </div>
+      
+      </div>
+
+
+      <div class="col-sm">
+
+        <!-- Trumbowyg -->
+        <div class="form-group">
+          <label for="paragraph_text"><i class="fas fa-paragraph me-1"></i> Text</label>
+          <textarea class="form-control" id="paragraph_text" rows="3" name="paragraph_text" required></textarea>
+        </div>
+
+        <script>
+          $('#paragraph_text').trumbowyg();
+        </script>
+
+      </div>
+
+    </div>
+  </div>
+
+</form>
+
+
+
+
+<br>
+<div class="card mb-6">
+  <div class="card-header">
+      <i class="fas fa-paragraph me-1"></i>
+      Paragraphs
+  </div>
+</div> 
+
+<br>
+
+<div class="container">
+  
+
+    {% for paragraph in newsletter['paragraphs'] %}
+
+      <div class="row">
+        <div class="col-sm">
+
+          <div class="form-group">
+            <label for="paragraph_title" class="fas fa-heading me-1"></i> Title</label>
+            <input type="text" class="form-control" value="{{ paragraph['header'] }}" readonly>
+          </div>
+
+          <br>
+          
+          <div class="form-group">
+            <label for="paragraph_image"><i class="fas fa-image me-1"></i> Image</label>
+            <input type="url" class="form-control" value="{{ paragraph['image'] }}" readonly>
+          </div>
+
+          <br>
+          <a href="/newsletter/delete-paragraph?paragraph-id={{ paragraph['paragraph_id'] }}">
+            <button type="button" class="btn btn-danger btn-lg">
+              <i class="fas fa-trash me-1"></i> Delete
+            </button>
+          </a>
+          <br><br>
+          
+        </div>
+
+
+        <div class="col-sm">
+
+          <div class="form-group">
+            <label for="heading"><i class="fas fa-heading me-1"></i> Heading</label>
+            <textarea class="form-control" rows="5" readonly>{{ paragraph['text'] }}</textarea>
+          </div>
+
+        </div>
+
+        <hr>
+        <br>
+
+      </div>
+
+      
+
+    {% endfor %}
+
+  
+</div>
+
+
+{% endblock %}

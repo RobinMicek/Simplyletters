@@ -1,0 +1,64 @@
+
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="index.html">
+        <img src="/files/media/sl-logo.png" style="width: auto; height: 5vh">
+    </a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+    
+</nav>
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+
+                    <div class="sb-sidenav-menu-heading">Newsletters</div>
+                    <a class="nav-link" href="/">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Dashboard
+                    </a>
+
+                    <a class="nav-link" href="/newsletters">
+                        <div class="sb-nav-link-icon"><i class="fas fa-envelope"></i></div>
+                        Newsletters
+                    </a>
+
+                    <a class="nav-link" href="/groups">
+                        <div class="sb-nav-link-icon"><i class="fas fa-user-group"></i></div>
+                        Groups
+                    </a>
+
+                    <div class="sb-sidenav-menu-heading">Administration</div>
+                    <a class="nav-link" href="/settings">
+                        <div class="sb-nav-link-icon"><i class="fas fa-gear"></i></div>
+                        Settings
+                    </a>
+
+                    <a class="nav-link" href="/admins">
+                        <div class="sb-nav-link-icon"><i class="fas fa-users-gear"></i></div>
+                        Admins
+                    </a>
+
+                    <div class="sb-sidenav-menu-heading">Integration</div>
+                    <a class="nav-link" href="/connect-apps">
+                        <div class="sb-nav-link-icon"><i class="fas fa-circle-nodes"></i></div>
+                        Connect Apps
+                    </a>
+
+                    <div class="sb-sidenav-menu-heading">Logout</div>
+                    <a class="nav-link" href="/logout">
+                        <div class="sb-nav-link-icon"><i class="fas fa-right-from-bracket"></i></div>
+                        Logout
+                    </a>
+
+                </div>
+            </div>
+            <div class="sb-sidenav-footer">
+                <div class="small">Logged in as:</div>
+                {{ username }}
+            </div>
+        </nav>
+    </div>
+

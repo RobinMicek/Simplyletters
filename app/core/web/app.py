@@ -42,6 +42,29 @@ app.secret_key = FLASK_SECRET_KEY
 from blueprints.b_auth import b_auth
 app.register_blueprint(b_auth)
 
+from blueprints.b_dashboard import b_dashboard
+app.register_blueprint(b_dashboard)
+
+from blueprints.b_newsletters import b_newsletters
+app.register_blueprint(b_newsletters)
+
+from blueprints.b_groups import b_groups
+app.register_blueprint(b_groups)
+
+from blueprints.b_settings import b_settings
+app.register_blueprint(b_settings)
+
+from blueprints.b_admins import b_admins
+app.register_blueprint(b_admins)
+
+from blueprints.b_apps import b_apps
+app.register_blueprint(b_apps)
+
+from blueprints.b_api import b_api
+app.register_blueprint(b_api)
+
+from blueprints.b_fts import b_fts
+app.register_blueprint(b_fts)
 
 
 # RUN THE FLASK TEST SERVER
@@ -49,6 +72,6 @@ while __name__ == "__main__":
     
     app.run(
         debug=True,
-        port=5000,
+        port=5001,
         host="0.0.0.0"
     )

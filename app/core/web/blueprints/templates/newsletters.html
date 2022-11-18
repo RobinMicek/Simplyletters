@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% include 'nav.html' %}
+
+{% block content %}
+
+    <div class="card mb-6">
+        <div class="card-header">
+            <i class="fas fa-envelope me-1"></i>
+            Newsletters
+
+            <div align="right">
+
+                <div class="btn-group" role="group">
+
+                    <a href="/newsletter/new" class="text-danger">
+                        <button type="button" class="btn btn-danger">
+                            <i class="fas fa-plus me-1"></i>
+                        </button>
+                    </a>
+
+                </div>
+  
+            </div>
+
+          </div>
+        </div>
+        <div class="card-body">
+
+            
+
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-heading"></i></th>
+                        <th><i class="fas fa-user-group"></i></th>
+                        <th><i class="fas fa-paper-plane"></i></th>
+                        <th><i class="fas fa-calendar-days"></i></th>
+                        <th><i class="fas fa-user"></i></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for newsletter in newsletters %}
+                        
+                            <tr>
+                                <td>{{ newsletter['title'] }}</td>
+                                <td>{{ newsletter['user_group'] }}</td>
+                                <td>
+
+                                    {% if newsletter['status'] == 0 %}
+                                    
+                                        <div class="sb-nav-link-icon"><i class="fas fa-x"></i></div>
+
+                                    {% elif newsletter['status'] == 1 %}
+                                                                            
+                                        <div class="sb-nav-link-icon"><i class="fas fa-paper-plane"></i></div>
+                                        
+                                    {% endif %}
+                                </td>
+                                <td>{{ newsletter['created'] }}</td>
+                                <td>{{ newsletter['created_by'] }}</td>
+                                <td>
+                                    <a href="/newsletter/edit?id={{ newsletter['id'] }}">
+                                        <button type="button" class="btn btn-danger btn-sm">
+                                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                    
+                    {% endfor%}
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

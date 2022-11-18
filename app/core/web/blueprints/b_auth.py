@@ -26,6 +26,7 @@ root_folder = os.path.abspath(os.path.dirname(os.path.dirname(os.path.abspath(__
 sys.path.append(root_folder)
 
 from auth.auth import Admin
+from auth.auth_wrappers import required_level_one
 
 from variables import FLASK_SECRET_KEY
 
@@ -65,6 +66,7 @@ def page_login():
 
 
 @b_auth.route("/logout")
+@required_level_one
 def page_logout():
 
     session.pop("account")

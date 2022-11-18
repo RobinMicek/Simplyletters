@@ -34,7 +34,7 @@ sys.path.append(root_folder)
 
 def required_level_one(func):
     def wrap(*args, **kwargs):
-        if session.get("account", None) != None and int(session.get("level", 0)) > 0:
+        if session.get("account", None) != None and 3 > int(session.get("level", 0)) > 0:
 
             return func(*args, **kwargs)
 
@@ -47,7 +47,7 @@ def required_level_one(func):
 
 def required_level_two(func):
     def wrap(*args, **kwargs):
-        if session.get("account", None) != None and int(session.get("level", 0)) > 1:
+        if session.get("account", None) != None and 3 > int(session.get("level", 0)) > 1:
 
             return func(*args, **kwargs)
 
@@ -59,9 +59,9 @@ def required_level_two(func):
         
 
 
-def required_level_three(func):
+def required_level_api(func):
     def wrap(*args, **kwargs):
-        if session.get("account", None) != None and int(session.get("level", 0)) > 2:
+        if session.get("account", None) != None and int(session.get("level", 0) == 3):
 
             return func(*args, **kwargs)
 

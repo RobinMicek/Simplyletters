@@ -200,8 +200,6 @@ class Newsletter():
 
     def create_newsletter(self, admin = None):
 
-        self.render_email()
-
         # Add data to database
         database = Database()
         database.connect()
@@ -237,17 +235,26 @@ class Newsletter():
         VALUES
         (
             LAST_INSERT_ID(),
-            '{self.template_number}',
-            '{self.color_main}',
-            '{self.color_accent}',
-            '{self.color_text}',
-            '{self.title}',
-            '{self.perex}',
-            '{self.perex_header}'
+            "{self.template_number}",
+            "{self.color_main}",
+            "{self.color_accent}",
+            "{self.color_text}",
+            "{self.title}",
+            "{self.perex}",
+            "{self.perex_header}"
         )
         """)
 
-        id = database.cursor.lastrowid
+        database.cursor.execute("""
+        SELECT
+        LAST_INSERT_ID()
+
+        FROM newsletters    
+
+        LIMIT 1
+        """)
+
+        id = database.cursor.fetchall()[0]["LAST_INSERT_ID()"]
 
         for x in self.paragraphs:
 
@@ -265,10 +272,10 @@ class Newsletter():
             )
             VALUES
             (
-                '{id}',
-                '{header}',
-                '{text}',
-                '{image}'
+                "{id}",
+                "{header}",
+                "{text}",
+                "{image}"
             )
             """)
 
@@ -289,7 +296,7 @@ class Newsletter():
 
         
         # Render newsletter
-        # self.render_email()
+        self.render_email()
 
 
         db = Database()
@@ -325,7 +332,6 @@ class Newsletter():
             """)
 
             users = db.cursor.fetchall()
-
 
             for x in users:
                 user_name = x["name"]

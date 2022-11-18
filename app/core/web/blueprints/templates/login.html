@@ -1,9 +1,48 @@
-<form method="POST" action="/login">
+{% extends 'base.html' %}
 
-    <input type="text" name="username">
+{% block content %}
+<style>
+    body {
+        background-color: var(--bs-danger);
+    }
 
-    <input type="password" name="password">
+    .card {
+        background-color: var(--bs-danger);
+    }
+</style>
 
-    <button type="submit">SUBMIT</button>
+<br><br><br>
 
-</form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header bg-dark text-white" align="center">
+                    <img src="/files/media/sl-logo.png" style="width: 50%;">
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/login">
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="inputEmail" type="type" name="username" placeholder="name@example.com" />
+                            <label for="inputEmail">Username</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="inputPassword" type="password" name="password" placeholder="Password" />
+                            <label for="inputPassword">Password</label>
+                        </div>
+                        <div class="align-items-center" align="center">
+                            <button type="submit" class="btn btn-lg btn-dark">Login</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

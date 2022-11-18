@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% include 'nav.html' %}
+
+{% block content %}
+
+
+<div class="card mb-6">
+    <div class="card-header">
+        <i class="fas fa-users-gear me-1"></i>
+        Admins
+      </div>
+    </div>
+    <div class="card-body">
+
+        
+        <form method="POST" action="/admins">
+
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-signature"></i></th>
+                        <th><i class="fas fa-user-tie"></i></th>
+                        <th></th>
+                        <th><i class="fas fa-envelope"></i></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>                            
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="John Doe" name="username" required>
+                            </div>
+                        </td>
+
+                        <td>                            
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password" name="password" required>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" id="level" name="level" required>
+                      
+                                  <option value="1">Creator</option>
+                                  <option value="2">Administrator</option>
+                                  <option value="3">API</option>
+                                 
+                                </select>
+                              </div>
+                        </td>
+
+                        <td></td>
+                        
+                        <td>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="fas fa-plus"></i> Create
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    {% for admin in admins %}
+                        
+                            <tr>
+                                <td>{{ admin['username'] }}</td>
+                                <td></td>
+                                <td>
+                                    {% if admin['level'] == 1 %}
+                                        Creator
+                                    {% elif admin['level'] == 2 %}
+                                        Administrator
+                                    {% elif admin['level'] == 3 %}
+                                        API
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {{ admin['newsletters'] }}
+                                </td>
+                                <td>
+                                    <a href="/admin/delete?id={{ admin['id'] }}">
+                                        <button type="button" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash me-1"></i> Delete
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                    
+                    {% endfor%}
+                    
+                </tbody>
+            </table>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

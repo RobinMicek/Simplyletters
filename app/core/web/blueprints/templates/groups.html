@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% include 'nav.html' %}
+
+{% block content %}
+
+
+<div class="card mb-6">
+    <div class="card-header">
+        <i class="fas fa-user-group me-1"></i>
+        Groups
+      </div>
+    </div>
+    <div class="card-body">
+
+        
+        <form method="POST" action="/groups">
+
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-font"></i></th>
+                        <th><i class="fas fa-user"></i></th>
+                        <th><i class="fas fa-message"></i></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>                            
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="My Group" name="name" required>
+                            </div>
+                        </td>
+
+                        <td></td>
+
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="This is my new group." name="description" required>
+                            </div>
+                        </td>
+                        
+                        <td>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="fas fa-plus"></i> Create
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    {% for group in user_groups %}
+                        
+                            <tr>
+                                <td>{{ group['name'] }}</td>
+                                <td>{{ group['users'] }}</td>
+                                <td>{{ group['description'] }}</td>
+                                <td>
+                                    <a href="/group/delete?id={{ group['id'] }}">
+                                        <button type="button" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash me-1"></i> Delete
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                    
+                    {% endfor%}
+                    
+                </tbody>
+            </table>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

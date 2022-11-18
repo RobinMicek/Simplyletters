@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    body {
+        background-color: var(--bs-danger);
+    }
+
+    .card {
+        background-color: var(--bs-danger);
+    }
+</style>
+
+<div class="card mb-6">
+
+    <div align="center">
+        <br>
+        <img src="/files/media/sl-logo.png" style="width: 20%;">
+    </div>
+
+    <div class="card-body text-white" align="center">
+
+        <h1>Welcome to Simplyletters!</h1>
+        <p>Before continuing please proceed to first time setup!</p>
+
+    </div>
+</div> 
+
+<br>
+
+<form method="POST" action="/fts">
+  
+    <div class="container text-white">
+      <div class="row">
+        <div class="col-sm">
+  
+          <div class="form-group">
+            <label for="company_name"><i class="fas fa-building me-1"></i> Company Name</label>
+            <input type="text" class="form-control" id="company_name" placeholder="My Company" name="company_name" required>
+          </div>
+  
+          <br>
+
+          <div class="form-group">
+            <label for="description"><i class="fas fa-paragraph me-1"></i> About Company</label>
+            <textarea class="form-control" id="description" rows="5" name="description" required></textarea>
+          </div>
+  
+          
+          
+        </div>
+  
+        <div class="col-sm">
+  
+            <div class="form-group">
+                <label for="smtp_server"><i class="fas fa-server me-1"></i> SMTP Server</label>
+                <input type="text" class="form-control" id="smtp_server" placeholder="email.simplyletters.com" name="smtp_server" required>
+            </div>
+    
+            <br>
+
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope me-1"></i> SMPT Email Address</label>
+                <input type="email" class="form-control" id="smtp_email" placeholder="newsletter@simplyletters.com" name="smtp_email" required>
+            </div>
+    
+            <br>
+
+            <div class="form-group">
+                <label for="smtp_password"><i class="fas fa-lock me-1"></i> SMTP Password</label>
+                <input type="password" class="form-control" id="smtp_password" placeholder="**********" name="smtp_password" required>
+            </div>
+    
+            <br>
+  
+        </div>
+
+
+        <div class="col-sm">
+
+            <div class="form-group">
+                <label for="username"><i class="fas fa-signature me-1"></i> Admin Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Administrator" name="username" required>
+            </div>
+
+            <br>
+
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock me-1"></i> Admin Password</label>
+                <input type="password" class="form-control" id="password" placeholder="**********" name="password" required>
+            </div>
+
+        </div>
+  
+      </div>
+    </div>
+
+    <br><br><br>
+
+    <div class="form-group" align="center">
+        <button type="submit" class="btn btn-lg btn-dark">
+          <i class="fas fa-plus me-1"></i> Create 
+        </button>
+    </div>
+  
+  </form>
+  
+
+
+{% endblock %}

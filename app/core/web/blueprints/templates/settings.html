@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% include 'nav.html' %}
+
+{% block content %}
+
+
+<div class="card mb-6">
+    <div class="card-header">
+        <i class="fas fa-gear me-1"></i>
+        Settings
+    </div>
+</div> 
+
+<br>
+
+
+<form method="POST" action="/settings">
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+
+        <div class="form-group">
+          <label for="logo"><i class="fas fa-image me-1"></i> Logo</label>
+          <input type="url" class="form-control" id="logo" placeholder="https://simplyletters.com/logo.png" name="logo" value="{{ settings['logo'] }}">
+        </div>
+
+        
+        <br><br><br>
+
+        <div class="form-group" align="center">
+          <button type="submit" class="btn btn-lg btn-danger">
+            <i class="fas fa-repeat me-1"></i> Update
+          </button>
+        </div>
+
+        
+      </div>
+
+      <div class="col-sm">
+
+        <!-- Trumbowyg -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.25.2/trumbowyg.min.js" integrity="sha512-mBsoM2hTemSjQ1ETLDLBYvw6WP9QV8giiD33UeL2Fzk/baq/AibWjI75B36emDB6Td6AAHlysP4S/XbMdN+kSA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.25.2/ui/trumbowyg.min.css" integrity="sha512-K87nr2SCEng5Nrdwkb6d6crKqDAl4tJn/BD17YCXH0hu2swuNMqSV6S8hTBZ/39h+0pDpW/tbQKq9zua8WiZTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <div class="form-group">
+          <label for="footer"><i class="fas fa-font me-1"></i> Footer</label>
+          <textarea class="form-control" id="footer" rows="3" name="footer">{{ settings['footer'] }}</textarea>
+        </div>
+
+        <script>
+          $('#footer').trumbowyg();
+        </script>
+
+      </div>
+
+    </div>
+  </div>
+
+</form>
+
+
+{% endblock %}

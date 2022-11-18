@@ -45,7 +45,7 @@ CREATE TABLE newsletters_config (
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY, 
-    email TEXT,
+    email TEXT UNIQUE,
     firstname TEXT,
     surname TEXT,
     active BOOLEAN DEFAULT '1',
@@ -106,8 +106,8 @@ newsletters_config
 )
 VALUES
 (
-    'This is logo!',
-    'This is footer!'
+    'This is a logo!',
+    'This is a footer!'
 );
 
 COMMIT;
