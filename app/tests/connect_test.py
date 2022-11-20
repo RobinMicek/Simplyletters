@@ -1,6 +1,6 @@
 import requests
 
-url = "<specify host>/connected-apps/register"
+url = "<specify url>/connect-app/register"
 
 headers = {
     "Token": "<specify connect token>"

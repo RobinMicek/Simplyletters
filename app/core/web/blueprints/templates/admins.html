@@ -20,9 +20,9 @@
                 <thead>
                     <tr>
                         <th><i class="fas fa-signature"></i></th>
-                        <th><i class="fas fa-user-tie"></i></th>
-                        <th></th>
                         <th><i class="fas fa-envelope"></i></th>
+                        <th></th>
+                        <th><i class="fas fa-lock"></i></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -35,11 +35,7 @@
                             </div>
                         </td>
 
-                        <td>                            
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password" name="password" required>
-                            </div>
-                        </td>
+                        <td></td>
 
                         <td>
                             <div class="form-group">
@@ -53,7 +49,11 @@
                               </div>
                         </td>
 
-                        <td></td>
+                        <td>                            
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password" name="password" required>
+                            </div>
+                        </td>
                         
                         <td>
                             <div class="form-group">
@@ -68,7 +68,9 @@
                         
                             <tr>
                                 <td>{{ admin['username'] }}</td>
-                                <td></td>
+                                <td>
+                                    {{ admin['newsletters'] }}
+                                </td>
                                 <td>
                                     {% if admin['level'] == 1 %}
                                         Creator
@@ -78,9 +80,7 @@
                                         API
                                     {% endif %}
                                 </td>
-                                <td>
-                                    {{ admin['newsletters'] }}
-                                </td>
+                                <td></td>
                                 <td>
                                     <a href="/admin/delete?id={{ admin['id'] }}">
                                         <button type="button" class="btn btn-danger btn-sm">
