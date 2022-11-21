@@ -1,7 +1,25 @@
-textarea {
-    font-family: var(--bs-body-font-family) !important;
+nav {
+    font-weight: 600 !important;
 }
 
-.textarea-font {
-    font-family: var(--bs-body-font-family) !important;
+button {
+    font-weight: 600 !important;
 }
+
+select {
+    font-weight: 600 !important;
+}
+
+input {
+    font-weight: 600 !important;
+}
+
+label {
+    font-weight: 600 !important;
+}
+
+
+.card {
+    font-weight: 600 !important;
+}
+
