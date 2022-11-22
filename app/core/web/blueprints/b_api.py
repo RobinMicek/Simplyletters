@@ -132,7 +132,6 @@ def page_api_connect():
 
 
 @b_api.route("/api/create-newsletter", methods=["POST"])
-@required_level_api
 def page_api_create_newsletter():
 
 
@@ -146,7 +145,7 @@ def page_api_create_newsletter():
 
         user = Admin(username=auth_user)
 
-        if user.auth(password = auth_password):
+        if user.auth(password = auth_password) and int(user.get_level()) == 3:
 
             newsletter_info = request.json.get("newsletter", None)
             newsletter_content = newsletter_info.get("content", None)
