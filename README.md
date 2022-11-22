@@ -131,7 +131,7 @@ There is a script written in Python for testing user's signup for newsletter. Yo
 
 * Adding the cover image is optional.
 
-* You can use **|?|NAME|?|** variable in any of the newsletters texts. When the newsletter is send, it will be replaced with the user's firstname. It will be done for every person in the group the newsletter is targeted on.
+* You can use **|?|NAME|?|** variable in any of the newsletters texts. When the newsletter is sent, it will be replaced with the user's firstname. It will be done for every person in the group the newsletter is targeted on.
 
 
 
@@ -143,7 +143,7 @@ Email sent through the API can be either delivered to a single email, or to a ta
 
 If you want to only send newsletter to a single email, the user with that email is not required to be signed on Simplyletters.
 
-* To create and send a newsletter you will first need to create a admin with API level access in the **Admins** tab. 
+* To create and send a newsletter you will first need to create an admin with API level access in the **Admins** tab. 
 * Then you need post a request with the newsletter configuration. 
 
 ```

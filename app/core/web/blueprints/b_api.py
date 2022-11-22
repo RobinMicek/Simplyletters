@@ -132,6 +132,7 @@ def page_api_connect():
 
 
 @b_api.route("/api/create-newsletter", methods=["POST"])
+@required_level_api
 def page_api_create_newsletter():
 
 
