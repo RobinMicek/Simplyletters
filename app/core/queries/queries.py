@@ -380,7 +380,10 @@ class Queries():
         query = self.db.cursor.fetchall()
         self.db.close()
         
-        return query[0].get("users", None)
+        try:
+            return query[0].get("users", None)
+        except:
+            return None
 
 
     def query_number_of_newsletters(self):
@@ -396,7 +399,10 @@ class Queries():
         query = self.db.cursor.fetchall()
         self.db.close()
         
-        return query[0].get("newsletters", None)
+        try:
+            return query[0].get("newsletters", None)
+        except:
+            return None
 
     
     def query_last_created_newsletter(self):
@@ -416,7 +422,10 @@ class Queries():
         query = self.db.cursor.fetchall()
         self.db.close()
         
-        return query[0].get("created", None)
+        try:
+            return query[0].get("created", None)
+        except:
+            return None
 
     
     def query_most_active_admin(self):
@@ -436,5 +445,8 @@ class Queries():
         query = self.db.cursor.fetchall()
         self.db.close()
         
-        return query[0].get("created_by", None)
+        try:
+            return query[0].get("created_by", None)
+        except:
+            return None
         
