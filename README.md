@@ -88,6 +88,10 @@ Simplyletters runs on **MySQL Database**. Please note that the database needs to
 **SL_FLASK_SECRET_KEY** - Flask secret key for session variables
 
 
+## 🔧 First Time Setup 🔧
+When you deploy Simplyletters firstly you will need to do the first time setup.
+For that navigate to _/fts_ and fill out all the necessary information.
+
 
 ## 💻 How to Work with Simplyletters 💻
 
