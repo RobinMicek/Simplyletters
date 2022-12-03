@@ -45,11 +45,13 @@ CREATE TABLE newsletters_config (
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY, 
-    email TEXT UNIQUE,
+    email VARCHAR(255) NOT NULL,
     firstname TEXT,
     surname TEXT,
     active BOOLEAN DEFAULT '1',
-    since TINYTEXT);
+    since TINYTEXT,
+    
+    UNIQUE (email));
 
 
 CREATE TABLE user_groups (
