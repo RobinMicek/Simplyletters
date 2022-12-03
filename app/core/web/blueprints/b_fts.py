@@ -56,11 +56,11 @@ def page_fts():
         else:
             
             db = Database()
-            db.connect()
 
             # Inicialize Database
             db.initialize()
 
+            db.connect()
             db.cursor.execute(f"""
             INSERT INTO 
             config
