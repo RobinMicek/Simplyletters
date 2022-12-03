@@ -346,18 +346,12 @@ class Queries():
     def query_check_fts(self):
 
         self.db.cursor.execute("""
-        SELECT
-
-        config.company_name,
-        config.description,
-
-        email_credentials.smtp_server,
-        email_credentials.email,
-        email_credentials.password
-
-        FROM config
-
-        INNER JOIN email_credentials
+        SELECT 
+            TABLE_NAME
+        FROM 
+            information_schema.TABLES 
+        WHERE
+            TABLE_NAME = "config"
         """)
         
         query = self.db.cursor.fetchall()
