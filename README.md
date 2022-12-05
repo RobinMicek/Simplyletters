@@ -50,7 +50,7 @@ $ docker run \
 -e SL_DB_NAME="<Database Name>" \
 -e SL_DB_PASSWORD="<Database Password>" \
 -e SL_DB_USER="<Database Username>" \
--e SL_DB_SSL_C="<Path to the certificate (if using SSL)>"
+-e SL_DB_SSL_CA="<Path to the certificate (if using SSL)>"
 -e SL_SECRET-KEY="<Flask Secret Key for session variables>" \
 \
 robinmicek/simplyletters
