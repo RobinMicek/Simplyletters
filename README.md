@@ -46,10 +46,11 @@ $ docker run \
 \
 -p "<Port>":8000 \
 \
--e SL_DATABASE_HOST="<Database Host>" \
--e SL_DATABASE_NAME="<Database Name>" \
--e SL_DATABASE_PASSWORD="<Database Password>" \
--e SL_DATABASE_USER="<Database Username>" \
+-e SL_DB_HOST="<Database Host>" \
+-e SL_DB_NAME="<Database Name>" \
+-e SL_DB_PASSWORD="<Database Password>" \
+-e SL_DB_USER="<Database Username>" \
+-e SL_DB_SSL_C="<Path to the certificate (if using SSL)>"
 -e SL_SECRET-KEY="<Flask Secret Key for session variables>" \
 \
 robinmicek/simplyletters
